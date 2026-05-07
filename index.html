@@ -1531,21 +1531,62 @@ function submitCheckin() {
   const msg = document.getElementById('checkin-message').value;
   const weight = document.getElementById('checkin-weight').value;
   const msgEl = document.getElementById('checkin-msg');
+
   const checkin = {
     name: 'John Smith', week: currentWeek, date: new Date().toLocaleDateString(),
-    goal: 'Senior Football Season — 40yd / Vertical / Bench / Squat / +10 lbs',
     effort: ratings.effort, recovery: ratings.recovery, sleep: ratings.sleep, confidence: ratings.confidence,
-    weight: weight || '—', message: msg, timestamp: Date.now()
+    weight: weight || '-', message: msg, timestamp: Date.now()
   };
   const checkins = getCheckins();
   checkins.unshift(checkin);
   saveCheckins(checkins);
-  msgEl.textContent = '✓ CHECK-IN SAVED';
+
+  const FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLSeW6HNjB0pzwDfGfpEbthQzdT__CVTxuYwaMvFP6k6p0cYc9Q/formResponse';
+
+  let iframe = document.getElementById('gf_iframe');
+  if (!iframe) {
+    iframe = document.createElement('iframe');
+    iframe.id = 'gf_iframe';
+    iframe.name = 'gf_iframe';
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+  }
+
+  const gform = document.createElement('form');
+  gform.method = 'POST';
+  gform.action = FORM_ACTION;
+  gform.target = 'gf_iframe';
+  gform.style.display = 'none';
+
+  const fields = [
+    ['entry.791163475', 'Week ' + currentWeek],
+    ['entry.638343511', String(ratings.effort || '-')],
+    ['entry.1348667956', String(ratings.recovery || '-')],
+    ['entry.2073252431', String(ratings.sleep || '-')],
+    ['entry.1803814797', String(ratings.confidence || '-')],
+    ['entry.415991714', msg || '(no message)'],
+    ['entry.6608900', weight || '-'],
+    ['entry.410605023', 'John Smith']
+  ];
+
+  fields.forEach(function(pair) {
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = pair[0];
+    input.value = pair[1];
+    gform.appendChild(input);
+  });
+
+  document.body.appendChild(gform);
+  gform.submit();
+  document.body.removeChild(gform);
+
+  msgEl.textContent = 'CHECK-IN SENT TO COACH';
   document.getElementById('checkin-message').value = '';
   document.getElementById('checkin-weight').value = '';
   ratings = { effort:0, recovery:0, sleep:0, confidence:0 };
   buildRatings();
-  setTimeout(() => { msgEl.textContent = ''; }, 4000);
+  setTimeout(function() { msgEl.textContent = ''; }, 4000);
 }
 
 function openLog(dayIndex) {
