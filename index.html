@@ -1,0 +1,1641 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>John Smith — Senior Season Prep</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #D42B2B;
+  --red-dark: #A01E1E;
+  --red-glow: rgba(212,43,43,0.15);
+  --black: #060606;
+  --surface: #0f0f0f;
+  --surface2: #161616;
+  --surface3: #1e1e1e;
+  --border: #242424;
+  --border2: #2e2e2e;
+  --text: #f0f0f0;
+  --text-muted: #666;
+  --text-dim: #444;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Barlow', sans-serif; background: var(--black); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+::-webkit-scrollbar { width: 3px; } ::-webkit-scrollbar-track { background: var(--black); } ::-webkit-scrollbar-thumb { background: var(--red); }
+body::before { content:''; position:fixed; inset:0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events:none; z-index:0; opacity:0.4; }
+
+nav { position:sticky; top:0; z-index:100; background: rgba(6,6,6,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(–border); }
+.nav-inner { max-width:980px; margin:0 auto; padding:0 20px; display:flex; align-items:center; justify-content:space-between; height:60px; }
+.brand { display:flex; align-items:center; gap:12px; }
+.brand-text { display:flex; flex-direction:column; }
+.brand-name { font-family:‘Bebas Neue’,sans-serif; font-size:20px; letter-spacing:4px; color:var(–text); line-height:1; }
+.brand-sub { font-family:‘Barlow Condensed’,sans-serif; font-size:9px; letter-spacing:5px; color:var(–red); text-transform:uppercase; }
+.nav-tabs { display:flex; gap:2px; }
+.nav-tab { background:transparent; border:none; color:var(–text-muted); padding:8px 16px; border-radius:4px; font-family:‘Barlow Condensed’,sans-serif; font-size:12px; letter-spacing:2px; text-transform:uppercase; cursor:pointer; transition:all 0.2s; }
+.nav-tab:hover { color:var(–text); }
+.nav-tab.active { background:var(–red); color:#fff; }
+
+main { max-width:980px; margin:0 auto; padding:24px 20px; position:relative; z-index:1; }
+.view { display:none; animation: fadeUp 0.3s ease; }
+.view.active { display:block; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+
+.hero { display:flex; align-items:center; gap:20px; margin-bottom:28px; padding:24px; background: linear-gradient(135deg, var(–red-glow), transparent 60%); border:1px solid rgba(212,43,43,0.2); border-radius:12px; position:relative; overflow:hidden; }
+.hero::after { content:’’; position:absolute; right:-40px; top:-40px; width:200px; height:200px; background: radial-gradient(circle, var(–red-glow) 0%, transparent 70%); pointer-events:none; }
+.hero-icon { font-size:56px; flex-shrink:0; }
+.hero-text h1 { font-family:‘Bebas Neue’,sans-serif; font-size:clamp(22px,5vw,36px); letter-spacing:4px; line-height:1; }
+.hero-text h1 span { color:var(–red); }
+.hero-text p { font-family:‘Barlow Condensed’,sans-serif; font-size:13px; letter-spacing:2px; color:var(–text-muted); margin-top:6px; text-transform:uppercase; }
+.hero-stats { display:flex; gap:20px; margin-top:12px; flex-wrap:wrap; }
+.hero-stat { font-family:‘Barlow Condensed’,sans-serif; font-size:11px; letter-spacing:1px; color:var(–text-muted); }
+.hero-stat b { color:var(–red); font-size:14px; }
+
+.phase-banner { border-radius:8px; padding:14px 20px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center; }
+.phase-label { font-family:‘Bebas Neue’,sans-serif; font-size:14px; letter-spacing:4px; }
+.phase-info { font-size:10px; color:var(–text-muted); letter-spacing:2px; margin-top:3px; font-family:‘Barlow Condensed’,sans-serif; text-transform:uppercase; }
+.week-big { font-family:‘Bebas Neue’,sans-serif; font-size:32px; letter-spacing:3px; text-align:right; }
+.week-of { font-size:10px; color:var(–text-muted); letter-spacing:2px; font-family:‘Barlow Condensed’,sans-serif; text-transform:uppercase; }
+
+.week-nav { display:flex; align-items:center; gap:8px; margin-bottom:20px; }
+.arrow { background:var(–surface); border:1px solid var(–border); color:var(–text); border-radius:4px; padding:8px 14px; cursor:pointer; font-size:16px; flex-shrink:0; transition:all 0.2s; }
+.arrow:disabled { opacity:0.3; cursor:not-allowed; }
+.arrow:not(:disabled):hover { border-color:var(–red); }
+.pills { display:flex; gap:3px; overflow-x:auto; padding-bottom:4px; flex:1; }
+.pills::-webkit-scrollbar { height:2px; }
+.pill { min-width:30px; height:30px; border-radius:4px; background:var(–surface); border:1px solid var(–border); color:var(–text-dim); cursor:pointer; font-size:11px; font-family:‘Barlow Condensed’,sans-serif; letter-spacing:1px; transition:all 0.15s; flex-shrink:0; position:relative; }
+.pill:hover { border-color:var(–red); color:var(–text); }
+.pill.active { color:#fff; font-weight:700; }
+.pill .pdot { position:absolute; top:2px; right:2px; width:4px; height:4px; border-radius:50%; background:var(–red); }
+
+.day-card { background:var(–surface); border:1px solid var(–border); border-radius:10px; overflow:hidden; cursor:pointer; transition:all 0.2s; margin-bottom:10px; }
+.day-card:hover { border-color:var(–red); transform:translateY(-2px); box-shadow:0 8px 32px rgba(212,43,43,0.1); }
+.day-card.logged { border-color:rgba(212,43,43,0.3); }
+.card-inner { display:flex; }
+.card-stripe { width:4px; flex-shrink:0; }
+.card-body { flex:1; padding:16px 18px; }
+.card-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px; }
+.card-meta { display:flex; align-items:center; gap:8px; margin-bottom:5px; flex-wrap:wrap; }
+.day-name { font-family:‘Bebas Neue’,sans-serif; font-size:15px; letter-spacing:3px; }
+.type-tag { font-family:‘Barlow Condensed’,sans-serif; font-size:10px; letter-spacing:1px; text-transform:uppercase; background:var(–surface3); color:var(–text-dim); padding:2px 7px; border-radius:3px; }
+.logged-tag { font-family:‘Barlow Condensed’,sans-serif; font-size:10px; letter-spacing:1px; color:var(–red); }
+.card-title { font-family:‘Barlow Condensed’,sans-serif; font-size:16px; font-weight:600; letter-spacing:1px; }
+.card-goal { font-size:12px; color:var(–text-muted); margin-top:3px; }
+.tap-hint { font-family:‘Barlow Condensed’,sans-serif; font-size:10px; color:var(–text-dim); letter-spacing:1px; white-space:nowrap; margin-left:12px; text-transform:uppercase; flex-shrink:0; }
+.ex-tags { display:flex; flex-wrap:wrap; gap:5px; margin-top:10px; }
+.ex-tag { background:var(–surface2); border:1px solid var(–border); border-radius:3px; padding:3px 8px; font-size:11px; color:var(–text-muted); font-family:‘Barlow’,sans-serif; }
+.ex-tag b { color:var(–text); font-weight:500; }
+
+.log-header { display:flex; align-items:center; gap:14px; margin-bottom:24px; }
+.back { background:transparent; border:1px solid var(–border2); color:var(–text-muted); border-radius:4px; padding:7px 14px; cursor:pointer; font-family:‘Barlow Condensed’,sans-serif; font-size:12px; letter-spacing:1px; text-transform:uppercase; transition:all 0.2s; }
+.back:hover { border-color:var(–red); color:var(–text); }
+.log-title { font-family:‘Bebas Neue’,sans-serif; font-size:20px; letter-spacing:4px; color:var(–red); }
+.log-sub { font-size:11px; color:var(–text-muted); margin-top:2px; font-family:‘Barlow Condensed’,sans-serif; letter-spacing:1px; }
+.form-card { background:var(–surface); border:1px solid var(–border); border-radius:10px; padding:22px; margin-bottom:14px; }
+.form-card-title { font-family:‘Barlow Condensed’,sans-serif; font-size:11px; letter-spacing:3px; color:var(–red); text-transform:uppercase; margin-bottom:18px; }
+.g2 { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+.g3 { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+.field { display:flex; flex-direction:column; gap:6px; }
+.field label { font-family:‘Barlow Condensed’,sans-serif; font-size:10px; letter-spacing:2px; color:var(–text-muted); text-transform:uppercase; }
+input, textarea, select { background:var(–surface2); border:1px solid var(–border2); color:var(–text); border-radius:4px; padding:9px 13px; font-family:‘Barlow’,sans-serif; font-size:13px; width:100%; transition:border-color 0.2s; }
+input:focus, textarea:focus, select:focus { outline:none; border-color:var(–red); }
+textarea { resize:vertical; }
+select option { background:var(–surface2); }
+.ex-block { border-bottom:1px solid var(–border); padding-bottom:16px; margin-bottom:16px; }
+.ex-block:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+.ex-block-name { font-family:‘Barlow Condensed’,sans-serif; font-size:13px; font-weight:600; letter-spacing:1px; color:var(–text); margin-bottom:4px; }
+.ex-block-detail { font-size:11px; color:var(–text-muted); margin-bottom:10px; }
+.save-btn { width:100%; background:var(–red); border:none; color:#fff; border-radius:6px; padding:18px; font-family:‘Bebas Neue’,sans-serif; font-size:20px; letter-spacing:5px; cursor:pointer; transition:all 0.2s; margin-top:4px; }
+.save-btn:hover { background:var(–red-dark); }
+.save-msg { text-align:center; font-family:‘Barlow Condensed’,sans-serif; font-size:12px; letter-spacing:2px; color:var(–red); margin-top:10px; min-height:20px; }
+
+.checkin-section { background:var(–surface); border:1px solid rgba(212,43,43,0.3); border-radius:10px; padding:22px; margin-bottom:14px; }
+.checkin-title { font-family:‘Bebas Neue’,sans-serif; font-size:16px; letter-spacing:4px; color:var(–red); margin-bottom:6px; }
+.checkin-sub { font-size:12px; color:var(–text-muted); margin-bottom:18px; }
+.rating-row { display:flex; align-items:center; gap:12px; margin-bottom:14px; flex-wrap:wrap; }
+.rating-label { font-family:‘Barlow Condensed’,sans-serif; font-size:11px; letter-spacing:2px; color:var(–text-muted); text-transform:uppercase; min-width:120px; }
+.rating-btns { display:flex; gap:4px; flex-wrap:wrap; }
+.r-btn { width:32px; height:32px; border-radius:4px; background:var(–surface2); border:1px solid var(–border); color:var(–text-muted); font-size:12px; cursor:pointer; transition:all 0.15s; font-family:‘Barlow Condensed’,sans-serif; }
+.r-btn:hover { border-color:var(–red); }
+.r-btn.selected { background:var(–red); border-color:var(–red); color:#fff; }
+.btn { font-family:‘Barlow Condensed’,sans-serif; font-size:12px; letter-spacing:2px; text-transform:uppercase; border:none; border-radius:4px; padding:9px 18px; cursor:pointer; transition:all 0.2s; }
+.btn-red { background:var(–red); color:#fff; }
+.btn-red:hover { background:var(–red-dark); }
+.btn-ghost { background:transparent; border:1px solid var(–border2); color:var(–text-muted); }
+.btn-ghost:hover { border-color:var(–red); color:var(–text); }
+
+.dash-title { font-family:‘Bebas Neue’,sans-serif; font-size:36px; letter-spacing:5px; color:var(–red); margin-bottom:4px; }
+.dash-sub { font-family:‘Barlow Condensed’,sans-serif; font-size:11px; letter-spacing:3px; color:var(–text-muted); text-transform:uppercase; margin-bottom:28px; }
+.stats { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:24px; }
+.stat { background:var(–surface); border:1px solid var(–border); border-radius:10px; padding:20px 16px; text-align:center; }
+.stat-n { font-family:‘Bebas Neue’,sans-serif; font-size:40px; color:var(–red); letter-spacing:2px; line-height:1; }
+.stat-l { font-family:‘Barlow Condensed’,sans-serif; font-size:10px; letter-spacing:2px; color:var(–text-muted); text-transform:uppercase; margin-top:6px; }
+.timeline-wrap { background:var(–surface); border:1px solid var(–border); border-radius:10px; padding:22px; margin-bottom:16px; }
+.timeline { display:flex; gap:3px; flex-wrap:wrap; margin-top:12px; }
+.tbox { width:30px; height:30px; border-radius:4px; background:var(–surface2); border:1px solid var(–border); display:flex; align-items:center; justify-content:center; font-size:9px; color:var(–text-dim); cursor:pointer; font-family:‘Barlow Condensed’,sans-serif; font-weight:600; transition:all 0.15s; }
+.tbox:hover, .tbox.cur { border-color:var(–red); }
+.legend { display:flex; gap:16px; margin-top:14px; flex-wrap:wrap; }
+.leg { display:flex; align-items:center; gap:6px; }
+.leg-dot { width:8px; height:8px; border-radius:50%; }
+.leg-l { font-family:‘Barlow Condensed’,sans-serif; font-size:10px; letter-spacing:1px; color:var(–text-muted); text-transform:uppercase; }
+.recent-card { background:var(–surface); border:1px solid var(–border); border-radius:10px; padding:22px; }
+.log-row { border-bottom:1px solid var(–border); padding:12px 0; display:flex; justify-content:space-between; align-items:center; }
+.log-row:last-child { border-bottom:none; }
+.log-row-main { font-size:12px; color:var(–text); }
+.log-row-sub { font-size:11px; color:var(–text-muted); margin-top:2px; }
+.log-row-stats { display:flex; gap:14px; font-family:‘Barlow Condensed’,sans-serif; font-size:11px; letter-spacing:1px; }
+.empty { text-align:center; color:var(–text-dim); font-size:13px; padding:20px 0; }
+
+.phase-key { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-bottom:20px; }
+.phase-key-item { background:var(–surface); border:1px solid var(–border); border-radius:6px; padding:10px 14px; display:flex; align-items:center; gap:10px; }
+.phase-key-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+.phase-key-text { font-family:‘Barlow Condensed’,sans-serif; font-size:11px; letter-spacing:1px; }
+.phase-key-text b { display:block; color:var(–text); }
+.phase-key-text span { color:var(–text-muted); font-size:10px; }
+
+.coach-banner { background: linear-gradient(135deg, rgba(212,43,43,0.12), transparent); border:1px solid rgba(212,43,43,0.25); border-radius:10px; padding:20px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+.coach-label { font-family:‘Bebas Neue’,sans-serif; font-size:22px; letter-spacing:4px; color:var(–red); }
+.coach-sub { font-family:‘Barlow Condensed’,sans-serif; font-size:11px; letter-spacing:2px; color:var(–text-muted); margin-top:4px; text-transform:uppercase; }
+.checkin-list { display:flex; flex-direction:column; gap:10px; }
+.checkin-item { background:var(–surface); border:1px solid var(–border); border-radius:8px; padding:16px 18px; }
+.ci-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px; }
+.ci-name { font-family:‘Barlow Condensed’,sans-serif; font-size:15px; font-weight:600; letter-spacing:1px; }
+.ci-date { font-size:11px; color:var(–text-muted); }
+.ci-metrics { display:flex; gap:16px; flex-wrap:wrap; margin-bottom:10px; }
+.ci-metric { display:flex; flex-direction:column; gap:2px; }
+.ci-metric-l { font-family:‘Barlow Condensed’,sans-serif; font-size:9px; letter-spacing:2px; color:var(–text-muted); text-transform:uppercase; }
+.ci-metric-v { font-family:‘Bebas Neue’,sans-serif; font-size:20px; letter-spacing:2px; }
+.ci-note { font-size:12px; color:var(–text-muted); font-style:italic; border-top:1px solid var(–border); padding-top:10px; }
+.no-checkins { text-align:center; color:var(–text-dim); padding:40px 20px; font-size:13px; }
+
+@media(max-width:600px) {
+.stats { grid-template-columns:repeat(3,1fr); }
+.g2 { grid-template-columns:1fr; }
+.g3 { grid-template-columns:repeat(2,1fr); }
+.tap-hint { display:none; }
+.hero { flex-direction:column; text-align:center; }
+.phase-key { grid-template-columns:1fr; }
+}
+</style>
+
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="brand">
+      <div class="brand-text">
+        <div class="brand-name">HUSTL PERFORMANCE</div>
+        <div class="brand-sub">John Smith · Senior Season 2025</div>
+      </div>
+    </div>
+    <div class="nav-tabs">
+      <button class="nav-tab active" data-view="program" onclick="showView('program')">Program</button>
+      <button class="nav-tab" data-view="dashboard" onclick="showView('dashboard')">Dashboard</button>
+      <button class="nav-tab" data-view="coach" onclick="showView('coach')">Coach</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <!-- PROGRAM VIEW -->
+
+  <div id="view-program" class="view active">
+
+```
+<div class="hero">
+  <div class="hero-icon">🏈</div>
+  <div class="hero-text">
+    <h1>JOHN SMITH — <span>SENIOR SEASON</span></h1>
+    <p>Hustl Performance · 20-Week Pre-Season Program · 2025</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><b>275</b> Bench Max</div>
+      <div class="hero-stat"><b>315</b> Squat Max</div>
+      <div class="hero-stat"><b>+10 lbs</b> Target Gain</div>
+      <div class="hero-stat"><b>↑</b> Vertical · 40yd · Agility</div>
+    </div>
+  </div>
+</div>
+
+<div class="phase-key">
+  <div class="phase-key-item"><div class="phase-key-dot" style="background:#D42B2B"></div><div class="phase-key-text"><b>PHASE 1 — Foundation (Wks 1–4)</b><span>Hypertrophy base · Movement patterns · GPP</span></div></div>
+  <div class="phase-key-item"><div class="phase-key-dot" style="background:#FF6B00"></div><div class="phase-key-text"><b>PHASE 2 — Strength (Wks 5–9)</b><span>Max strength · Bench/squat progression · Power intro</span></div></div>
+  <div class="phase-key-item"><div class="phase-key-dot" style="background:#7c3aed"></div><div class="phase-key-text"><b>PHASE 3 — Power & Speed (Wks 10–14)</b><span>Explosive output · Vert · 40yd · Agility ladders</span></div></div>
+  <div class="phase-key-item"><div class="phase-key-dot" style="background:#15803d"></div><div class="phase-key-text"><b>PHASE 4 — Peak & Transfer (Wks 15–20)</b><span>Peak strength · Sport-specific speed · Game prep</span></div></div>
+</div>
+
+<div id="phase-banner" class="phase-banner">
+  <div>
+    <div id="phase-name" class="phase-label"></div>
+    <div id="phase-info" class="phase-info"></div>
+  </div>
+  <div>
+    <div id="week-display" class="week-big"></div>
+    <div class="week-of">of 20</div>
+  </div>
+</div>
+
+<div class="week-nav">
+  <button class="arrow" id="prev-btn" onclick="changeWeek(-1)">&#8249;</button>
+  <div class="pills" id="pills"></div>
+  <button class="arrow" id="next-btn" onclick="changeWeek(1)">&#8250;</button>
+</div>
+
+<div id="days-container"></div>
+
+<div class="checkin-section">
+  <div class="checkin-title">WEEKLY CHECK-IN</div>
+  <div class="checkin-sub">Submit to coach at the end of each training week</div>
+  <div class="rating-row">
+    <div class="rating-label">Overall Effort</div>
+    <div class="rating-btns" id="rating-effort"></div>
+  </div>
+  <div class="rating-row">
+    <div class="rating-label">Recovery Quality</div>
+    <div class="rating-btns" id="rating-recovery"></div>
+  </div>
+  <div class="rating-row">
+    <div class="rating-label">Avg Sleep (hrs)</div>
+    <div class="rating-btns" id="rating-sleep"></div>
+  </div>
+  <div class="rating-row">
+    <div class="rating-label">Body Feel</div>
+    <div class="rating-btns" id="rating-confidence"></div>
+  </div>
+  <div class="g2" style="margin-top:16px;margin-bottom:16px">
+    <div class="field">
+      <label>Current Weight (lbs)</label>
+      <input type="number" id="checkin-weight" placeholder="e.g. 195" min="100" max="400" step="0.5">
+    </div>
+    <div class="field" style="grid-column:1/-1">
+      <label>Message to Coach</label>
+      <textarea id="checkin-message" rows="3" placeholder="How was the week? Anything feel strong or off? Pain? PRs?"></textarea>
+    </div>
+  </div>
+  <button class="btn btn-red" style="width:100%;padding:12px;font-size:14px;letter-spacing:3px;" onclick="submitCheckin()">SUBMIT CHECK-IN</button>
+  <div id="checkin-msg" style="text-align:center;font-size:11px;color:var(--red);margin-top:8px;min-height:18px;font-family:'Barlow Condensed',sans-serif;letter-spacing:2px;"></div>
+</div>
+```
+
+  </div>
+
+  <!-- LOG VIEW -->
+
+  <div id="view-log" class="view">
+    <div class="log-header">
+      <button class="back" onclick="showView('program')">&#8592; Back</button>
+      <div>
+        <div class="log-title">LOG SESSION</div>
+        <div class="log-sub" id="log-subtitle"></div>
+      </div>
+    </div>
+    <div class="form-card">
+      <div class="form-card-title">Session Stats</div>
+      <div class="g2">
+        <div class="field"><label>Date</label><input type="date" id="log-date"></div>
+        <div class="field"><label>Total Time (min)</label><input type="text" id="log-time" placeholder="e.g. 75"></div>
+        <div class="field"><label>Sleep Hours</label><input type="number" id="log-sleep" placeholder="8" min="0" max="12" step="0.5"></div>
+        <div class="field"><label>Sleep Quality (1–10)</label><input type="number" id="log-sleep-q" placeholder="8" min="1" max="10"></div>
+        <div class="field"><label>Energy Level (1–10)</label><input type="number" id="log-energy" placeholder="8" min="1" max="10"></div>
+        <div class="field"><label>Mood (1–10)</label><input type="number" id="log-mood" placeholder="9" min="1" max="10"></div>
+      </div>
+    </div>
+    <div class="form-card">
+      <div class="form-card-title">Exercises — Log Your Actual Numbers</div>
+      <div id="exercise-inputs"></div>
+    </div>
+    <div class="form-card">
+      <div class="form-card-title">Session Notes</div>
+      <textarea id="log-notes" rows="3" placeholder="How'd it feel? Any PRs? What was hard? Pain? Wins?"></textarea>
+    </div>
+    <button class="save-btn" onclick="saveLog()">SAVE SESSION</button>
+    <div class="save-msg" id="save-msg"></div>
+  </div>
+
+  <!-- DASHBOARD VIEW -->
+
+  <div id="view-dashboard" class="view">
+    <div class="dash-title">DASHBOARD</div>
+    <div class="dash-sub">John Smith · Senior Season 2025 · Hustl Performance</div>
+    <div class="stats">
+      <div class="stat"><div class="stat-n" id="s-logged">0</div><div class="stat-l">Sessions Logged</div></div>
+      <div class="stat"><div class="stat-n" id="s-weeks">0</div><div class="stat-l">Weeks Complete</div></div>
+      <div class="stat"><div class="stat-n" id="s-checkins">0</div><div class="stat-l">Check-ins Sent</div></div>
+    </div>
+    <div class="timeline-wrap">
+      <div class="form-card-title" style="margin-bottom:0">20-Week Training Timeline</div>
+      <div class="timeline" id="timeline"></div>
+      <div class="legend">
+        <div class="leg"><div class="leg-dot" style="background:#D42B2B"></div><div class="leg-l">Phase 1 — Foundation</div></div>
+        <div class="leg"><div class="leg-dot" style="background:#FF6B00"></div><div class="leg-l">Phase 2 — Strength</div></div>
+        <div class="leg"><div class="leg-dot" style="background:#7c3aed"></div><div class="leg-l">Phase 3 — Power & Speed</div></div>
+        <div class="leg"><div class="leg-dot" style="background:#15803d"></div><div class="leg-l">Phase 4 — Peak</div></div>
+      </div>
+    </div>
+    <div class="recent-card">
+      <div class="form-card-title">Recent Sessions</div>
+      <div id="recent-logs"></div>
+    </div>
+  </div>
+
+  <!-- COACH VIEW -->
+
+  <div id="view-coach" class="view">
+    <div class="coach-banner">
+      <div>
+        <div class="coach-label">COACH DASHBOARD</div>
+        <div class="coach-sub">John Smith · Hustl Performance</div>
+      </div>
+      <button class="btn btn-ghost" onclick="clearCheckins()">Clear Check-ins</button>
+    </div>
+    <div class="form-card-title" style="margin-bottom:14px;font-family:'Barlow Condensed';font-size:11px;letter-spacing:3px;color:var(--red);">CLIENT CHECK-INS</div>
+    <div class="checkin-list" id="checkin-list">
+      <div class="no-checkins">No check-ins yet.<br>John submits from the Program tab each week.</div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+// ─── PHASE COLORS ───────────────────────────────────────────────────────────
+const PHASE_COLORS = { 1:'#D42B2B', 2:'#FF6B00', 3:'#7c3aed', 4:'#15803d' };
+
+function getPhaseForWeek(w) {
+  if (w <= 4) return 1;
+  if (w <= 9) return 2;
+  if (w <= 14) return 3;
+  return 4;
+}
+
+// ─── PROGRAM DATA ────────────────────────────────────────────────────────────
+const PROGRAM = {
+// ════════════════════════════════════════════════════════
+// PHASE 1 — FOUNDATION (Weeks 1–4)
+// Goal: GPP, hypertrophy base, movement quality, caloric surplus begins
+// ════════════════════════════════════════════════════════
+1: { phase:1, days:[
+  { day:'MON', type:'UPPER HYPERTROPHY', title:'Bench & Upper Push — Foundation', goal:'Build connective tissue and upper body volume. Control every rep. 3-second eccentric on all pressing.',
+    exercises:[
+      {name:'Barbell Bench Press',sets:4,reps:'10',weight:'185 lbs (67% 1RM — control it)'},
+      {name:'Incline DB Press',sets:3,reps:'12',weight:'60–70 lbs'},
+      {name:'DB Shoulder Press',sets:3,reps:'12',weight:'50 lbs'},
+      {name:'Cable Lateral Raise',sets:3,reps:'15',weight:'light — feel it'},
+      {name:'Tricep Rope Pushdown',sets:3,reps:'15',weight:'moderate'},
+      {name:'Face Pull',sets:3,reps:'15',weight:'light — shoulder health'}
+    ]},
+  { day:'TUE', type:'LOWER HYPERTROPHY', title:'Squat & Lower Push — Foundation', goal:'Establish squat pattern. High bar. Full depth. Controlled descent. Begin lower body volume.',
+    exercises:[
+      {name:'Back Squat',sets:4,reps:'10',weight:'215 lbs (68% 1RM — own the depth)'},
+      {name:'Romanian Deadlift',sets:3,reps:'12',weight:'185 lbs — feel the hamstrings'},
+      {name:'Leg Press',sets:3,reps:'15',weight:'moderate — full ROM'},
+      {name:'Walking DB Lunge',sets:3,reps:'12 each',weight:'40 lbs'},
+      {name:'Leg Curl',sets:3,reps:'15',weight:'moderate'},
+      {name:'Calf Raise',sets:4,reps:'20',weight:'bodyweight + load'}
+    ]},
+  { day:'WED', type:'SPEED & AGILITY', title:'Speed Work — 40yd Mechanics', goal:'Pure acceleration mechanics. Drive phase, shin angle, arm action. Film yourself if possible.',
+    exercises:[
+      {name:'Wall Drills — Positional',sets:3,reps:'10 sec holds each',weight:'bodyweight'},
+      {name:'A-Skip',sets:4,reps:'20 yds',weight:'bodyweight'},
+      {name:'B-Skip',sets:4,reps:'20 yds',weight:'bodyweight'},
+      {name:'Acceleration Runs (10yd)',sets:8,reps:'10 yards — FULL effort',weight:'rest 90 sec between'},
+      {name:'Acceleration Runs (20yd)',sets:6,reps:'20 yards — FULL effort',weight:'rest 2 min between'},
+      {name:'Agility Ladder — Icky Shuffle',sets:4,reps:'length of ladder',weight:'focus: foot speed'}
+    ]},
+  { day:'THU', type:'UPPER PULL', title:'Back & Pulling Volume — Foundation', goal:'Build upper back thickness. Rear delts and lats are armor. Pull heavy and hard.',
+    exercises:[
+      {name:'Barbell Row',sets:4,reps:'10',weight:'185 lbs — chest to bar'},
+      {name:'Weighted Pull-Up',sets:4,reps:'8',weight:'bodyweight or +10 lbs'},
+      {name:'Seated Cable Row',sets:3,reps:'12',weight:'moderate — full stretch'},
+      {name:'DB Single-Arm Row',sets:3,reps:'12 each',weight:'80–100 lbs'},
+      {name:'EZ Bar Curl',sets:3,reps:'12',weight:'moderate'},
+      {name:'Hammer Curl',sets:3,reps:'15 each',weight:'30–35 lbs'}
+    ]},
+  { day:'FRI', type:'LOWER POWER INTRO', title:'Power Clean & Jump Work', goal:'Learn the hip hinge for power. If new to cleans, do hang power cleans or box jumps instead.',
+    exercises:[
+      {name:'Hang Power Clean (or DB Clean)',sets:5,reps:'4',weight:'95–115 lbs — technique over load'},
+      {name:'Box Jump',sets:4,reps:'5',weight:'24" box — land soft, step down'},
+      {name:'Broad Jump',sets:4,reps:'4',weight:'max effort — measure distance'},
+      {name:'Trap Bar Deadlift',sets:4,reps:'8',weight:'225–245 lbs — explosive up'},
+      {name:'Nordic Hamstring Curl',sets:3,reps:'6',weight:'bodyweight — injury prevention'},
+      {name:'Single-Leg Glute Bridge',sets:3,reps:'15 each',weight:'bodyweight'}
+    ]},
+  { day:'SAT', type:'CONDITIONING', title:'GPP Conditioning', goal:'Get your engine running. Not a sprint. Aerobic base for a 20-week grind.',
+    exercises:[
+      {name:'Stadium Stairs or Hill Runs',sets:4,reps:'2 min effort',weight:'60–70% — breathing hard but talking'},
+      {name:'Sled Push',sets:6,reps:'20 yds',weight:'moderate — not death'},
+      {name:'Farmer Carry',sets:4,reps:'40 yds',weight:'50 lbs each hand'},
+      {name:'Med Ball Slam',sets:3,reps:'15',weight:'20 lb ball'}
+    ]},
+  { day:'SUN', type:'REST', title:'Full Recovery', goal:'Sleep 8+ hrs. Eat big. Stretch. This is where you grow.',
+    exercises:[
+      {name:'Foam Roll — Full Body',sets:1,reps:'10–15 min',weight:'hit everything'},
+      {name:'Light Stretching',sets:1,reps:'10 min',weight:'hips, hamstrings, thoracic'}
+    ]}
+]},
+2: { phase:1, days:[
+  { day:'MON', type:'UPPER HYPERTROPHY', title:'Bench & Upper Push — Week 2', goal:'Add 5 lbs to last week\'s bench. Same controlled tempo. Chase the pump.',
+    exercises:[
+      {name:'Barbell Bench Press',sets:4,reps:'10',weight:'190 lbs — +5 from last week'},
+      {name:'Incline DB Press',sets:3,reps:'12',weight:'65–75 lbs'},
+      {name:'Machine Chest Press',sets:3,reps:'15',weight:'moderate — full range'},
+      {name:'DB Shoulder Press',sets:3,reps:'12',weight:'55 lbs'},
+      {name:'Lateral Raise — 21s',sets:3,reps:'7 bottom / 7 top / 7 full',weight:'15–20 lbs'},
+      {name:'Overhead Tricep Extension',sets:3,reps:'12',weight:'moderate'}
+    ]},
+  { day:'TUE', type:'LOWER HYPERTROPHY', title:'Squat & Lower Push — Week 2', goal:'Add 10 lbs to squat. Volume is king this phase. Don\'t skip the accessories.',
+    exercises:[
+      {name:'Back Squat',sets:4,reps:'10',weight:'225 lbs (+10)'},
+      {name:'Romanian Deadlift',sets:3,reps:'12',weight:'195 lbs'},
+      {name:'Leg Press',sets:4,reps:'15',weight:'add one plate from last week'},
+      {name:'Step-Up with DB',sets:3,reps:'12 each',weight:'40–50 lbs'},
+      {name:'Leg Curl',sets:3,reps:'15',weight:'add 5 lbs'},
+      {name:'Standing Calf Raise',sets:4,reps:'20',weight:'load up'}
+    ]},
+  { day:'WED', type:'SPEED & AGILITY', title:'Speed Work — Drive Phase Focus', goal:'Same drills, sharper execution. These become automatic. Trust the process.',
+    exercises:[
+      {name:'Wall Drill — March',sets:3,reps:'10 reps each side',weight:'bodyweight'},
+      {name:'Falling Start Drill',sets:5,reps:'10 yds',weight:'drive out of the fall'},
+      {name:'10yd Acceleration',sets:10,reps:'10 yds — max effort',weight:'full rest between'},
+      {name:'30yd Fly',sets:4,reps:'30 yds — top-end speed',weight:'walk back rest'},
+      {name:'Agility Ladder — In-In-Out-Out',sets:4,reps:'full length',weight:'speed focus'},
+      {name:'Cone Drill — 5-10-5',sets:6,reps:'each direction',weight:'time yourself'}
+    ]},
+  { day:'THU', type:'UPPER PULL', title:'Back Volume — Week 2', goal:'Back thickness protects your shoulders and makes you unstoppable on the field.',
+    exercises:[
+      {name:'Weighted Pull-Up',sets:4,reps:'8',weight:'+15–20 lbs'},
+      {name:'Barbell Row',sets:4,reps:'10',weight:'195 lbs'},
+      {name:'Lat Pulldown',sets:3,reps:'12',weight:'moderate — full stretch at top'},
+      {name:'Cable Row — Wide Grip',sets:3,reps:'12',weight:'moderate'},
+      {name:'DB Rear Delt Fly',sets:3,reps:'15',weight:'20–25 lbs'},
+      {name:'Barbell Curl',sets:3,reps:'12',weight:'add 5 lbs from last week'}
+    ]},
+  { day:'FRI', type:'LOWER POWER', title:'Power & Plyometrics — Week 2', goal:'Every rep should be violent. Power is speed × strength. Treat each jump like game speed.',
+    exercises:[
+      {name:'Hang Power Clean',sets:5,reps:'4',weight:'115–125 lbs — add weight if form is clean'},
+      {name:'Depth Jump',sets:4,reps:'4',weight:'step off 12–18" box, react off ground immediately'},
+      {name:'Broad Jump',sets:4,reps:'4',weight:'measure distance — beat last week'},
+      {name:'Trap Bar Deadlift',sets:4,reps:'6',weight:'255–265 lbs — faster pull'},
+      {name:'Single-Leg Squat to Box',sets:3,reps:'8 each',weight:'bodyweight — control'},
+      {name:'Nordic Hamstring Curl',sets:3,reps:'6',weight:'bodyweight'}
+    ]},
+  { day:'SAT', type:'CONDITIONING', title:'GPP Conditioning — Week 2', goal:'Add one round to last week. Your conditioning base is being built now.',
+    exercises:[
+      {name:'Hill Sprint',sets:5,reps:'30 yds uphill',weight:'90% effort — walk down'},
+      {name:'Sled Push',sets:6,reps:'20 yds',weight:'add 10 lbs from week 1'},
+      {name:'Battle Ropes',sets:4,reps:'30 sec on / 30 off',weight:'all out'},
+      {name:'Med Ball Rotational Throw',sets:3,reps:'10 each side',weight:'20 lb ball'}
+    ]},
+  { day:'SUN', type:'REST', title:'Full Recovery', goal:'Eat big. Sleep 8+. Active recovery only.',
+    exercises:[
+      {name:'Foam Roll + Stretch',sets:1,reps:'15–20 min',weight:'full body priority'},
+      {name:'Light Walk',sets:1,reps:'20–30 min',weight:'easy pace'}
+    ]}
+]},
+3: { phase:1, days:[
+  { day:'MON', type:'UPPER HYPERTROPHY', title:'Bench & Push — Volume Peak', goal:'Highest volume week of Phase 1. This is where size gets built. Eat 500 cals over maintenance.',
+    exercises:[
+      {name:'Barbell Bench Press',sets:5,reps:'8',weight:'200 lbs — same tempo'},
+      {name:'Incline Barbell Press',sets:4,reps:'10',weight:'155 lbs'},
+      {name:'DB Chest Fly',sets:3,reps:'15',weight:'30–35 lbs — stretch the chest'},
+      {name:'Machine Shoulder Press',sets:4,reps:'12',weight:'moderate'},
+      {name:'Cable Lateral Raise',sets:4,reps:'15',weight:'feel every rep'},
+      {name:'Skull Crushers',sets:3,reps:'12',weight:'moderate'}
+    ]},
+  { day:'TUE', type:'LOWER HYPERTROPHY', title:'Squat Volume Peak — Week 3', goal:'Big volume day. This is the hardest lower body day of Phase 1. Earn it.',
+    exercises:[
+      {name:'Back Squat',sets:5,reps:'8',weight:'235 lbs — add 10 from week 2'},
+      {name:'Leg Press',sets:4,reps:'15',weight:'heavy — full range'},
+      {name:'Romanian Deadlift',sets:4,reps:'10',weight:'205 lbs'},
+      {name:'Walking Lunge',sets:3,reps:'15 each',weight:'50 lbs per hand'},
+      {name:'Leg Extension',sets:3,reps:'20',weight:'light — pump the quads'},
+      {name:'Standing Calf Raise',sets:5,reps:'20',weight:'heavy'}
+    ]},
+  { day:'WED', type:'SPEED & AGILITY', title:'Speed + Pro Agility — Week 3', goal:'Add the pro agility drill. Start timing your 40. This is your baseline.',
+    exercises:[
+      {name:'Dynamic Warm-Up',sets:1,reps:'10 min',weight:'A-skip, B-skip, high knee, butt kick'},
+      {name:'10yd Acceleration',sets:8,reps:'max effort',weight:'full rest'},
+      {name:'40yd Dash — Timed',sets:4,reps:'full run',weight:'log your time — this is Week 3 baseline'},
+      {name:'Pro Agility (5-10-5)',sets:8,reps:'each direction',weight:'time each rep'},
+      {name:'Lateral Shuffle Cone Drill',sets:5,reps:'10 yds each way',weight:'low hips, quick feet'},
+      {name:'Agility Ladder — 2 patterns',sets:4,reps:'each pattern',weight:'max foot speed'}
+    ]},
+  { day:'THU', type:'UPPER PULL', title:'Back Volume Peak — Week 3', goal:'Pull everything. Upper back is your most underrated performance muscle.',
+    exercises:[
+      {name:'Weighted Pull-Up',sets:5,reps:'6',weight:'+20–25 lbs'},
+      {name:'Barbell Row',sets:4,reps:'8',weight:'205 lbs'},
+      {name:'Meadows Row',sets:3,reps:'10 each',weight:'heavy — brutal on the lats'},
+      {name:'Lat Pulldown',sets:3,reps:'15',weight:'moderate'},
+      {name:'Cable Rear Delt Fly',sets:4,reps:'15',weight:'light — feel the squeeze'},
+      {name:'DB Curl',sets:4,reps:'12',weight:'add weight'}
+    ]},
+  { day:'FRI', type:'LOWER POWER', title:'Power Peak — Week 3', goal:'Most explosive session of Phase 1. Go for height on jumps. Measure everything.',
+    exercises:[
+      {name:'Hang Power Clean',sets:6,reps:'3',weight:'130–140 lbs'},
+      {name:'Box Jump — Max Height',sets:5,reps:'3',weight:'go for new PR height — measure'},
+      {name:'Vertical Jump Test',sets:5,reps:'1 max effort',weight:'this is your Week 3 baseline — log it'},
+      {name:'Broad Jump',sets:5,reps:'3',weight:'max effort — measure'},
+      {name:'Trap Bar Deadlift',sets:4,reps:'5',weight:'270–285 lbs — violent extension'}
+    ]},
+  { day:'SAT', type:'CONDITIONING', title:'GPP Conditioning — Week 3', goal:'Keep the engine going. You\'re building a base that pays dividends in August.',
+    exercises:[
+      {name:'Hill Sprint',sets:6,reps:'30 yds',weight:'max effort'},
+      {name:'Sled Pull (backward walk)',sets:4,reps:'20 yds',weight:'quads screaming'},
+      {name:'Rower or Assault Bike',sets:5,reps:'30 sec all-out / 90 sec off',weight:'gas tank work'}
+    ]},
+  { day:'SUN', type:'REST', title:'Full Recovery', goal:'3 hard weeks down. Rest hard. Eat big.',
+    exercises:[
+      {name:'Foam Roll',sets:1,reps:'15 min',weight:'hips, glutes, T-spine priority'},
+      {name:'Contrast Bath or Ice Bath',sets:1,reps:'10 min',weight:'if available'}
+    ]}
+]},
+4: { phase:1, days:[
+  { day:'MON', type:'DELOAD UPPER', title:'Deload — Upper Body', goal:'Drop weight 15–20%. Cut volume in half. This is intentional. You will come back stronger.',
+    exercises:[
+      {name:'Barbell Bench Press',sets:3,reps:'8',weight:'160 lbs — light and crisp'},
+      {name:'Incline DB Press',sets:2,reps:'10',weight:'50 lbs'},
+      {name:'DB Row',sets:3,reps:'10 each',weight:'60 lbs'},
+      {name:'Face Pull',sets:3,reps:'15',weight:'light'}
+    ]},
+  { day:'TUE', type:'DELOAD LOWER', title:'Deload — Lower Body', goal:'Move the joints. Flush the muscles. Let the connective tissue recover.',
+    exercises:[
+      {name:'Back Squat',sets:3,reps:'8',weight:'175 lbs — smooth and controlled'},
+      {name:'Romanian Deadlift',sets:2,reps:'10',weight:'155 lbs'},
+      {name:'Leg Press',sets:2,reps:'12',weight:'moderate'},
+      {name:'Calf Raise',sets:3,reps:'15',weight:'moderate'}
+    ]},
+  { day:'WED', type:'MOVEMENT', title:'Speed — Technique Only', goal:'No all-out sprints. Focus purely on mechanics. Film your 40 start.',
+    exercises:[
+      {name:'Wall Drills',sets:3,reps:'10 each',weight:'slow and perfect'},
+      {name:'A-Skip / B-Skip',sets:3,reps:'20 yds each',weight:'exaggerated mechanics'},
+      {name:'Stride-Out Runs',sets:4,reps:'30 yds',weight:'75% — feel the movement'},
+      {name:'Agility Ladder — slow',sets:3,reps:'each pattern',weight:'accuracy not speed'}
+    ]},
+  { day:'THU', type:'REST', title:'Full Rest Day', goal:'Sleep. Eat. Recover. You earned it.',
+    exercises:[
+      {name:'Walk',sets:1,reps:'20 min',weight:'easy'}
+    ]},
+  { day:'FRI', type:'DELOAD POWER', title:'Light Power Work', goal:'Neuromuscular activation. Keep the patterns. Don\'t load heavy.',
+    exercises:[
+      {name:'Hang Power Clean',sets:3,reps:'3',weight:'95 lbs — crisp and fast'},
+      {name:'Box Jump',sets:3,reps:'3',weight:'comfortable height — easy landings'},
+      {name:'Broad Jump',sets:3,reps:'3',weight:'75% effort'}
+    ]},
+  { day:'SAT', type:'REST', title:'Rest', goal:'Full rest. Prepare mentally for Phase 2.',
+    exercises:[
+      {name:'Light Stretching',sets:1,reps:'10–15 min',weight:'mobility focus'}
+    ]},
+  { day:'SUN', type:'REST', title:'Rest & Reflect', goal:'Journal your Week 3 baselines: 40 time, vert height, broad jump distance. These are your numbers to beat.',
+    exercises:[
+      {name:'Log Baselines',sets:1,reps:'write them down',weight:'40yd time / vertical / broad jump / weight'}
+    ]}
+]},
+// ════════════════════════════════════════════════════════
+// PHASE 2 — STRENGTH (Weeks 5–9)
+// Goal: Maximal strength gains on bench and squat, power endurance
+// ════════════════════════════════════════════════════════
+5: { phase:2, days:[
+  { day:'MON', type:'BENCH — STRENGTH', title:'Bench Press — 5×5 Protocol Begins', goal:'This is where your bench max grows. 5×5 at 80% 1RM. Add 5 lbs per week like clockwork.',
+    exercises:[
+      {name:'Barbell Bench Press — 5×5',sets:5,reps:'5',weight:'220 lbs (80% of 275)'},
+      {name:'Close-Grip Bench Press',sets:3,reps:'8',weight:'175 lbs — tricep strength for lockout'},
+      {name:'DB Incline Press',sets:3,reps:'10',weight:'75–80 lbs'},
+      {name:'Cable Chest Fly',sets:3,reps:'12',weight:'moderate — pump'},
+      {name:'Overhead Press',sets:4,reps:'8',weight:'115 lbs'},
+      {name:'Tricep Dip (weighted)',sets:3,reps:'10',weight:'+25 lbs'}
+    ]},
+  { day:'TUE', type:'SQUAT — STRENGTH', title:'Squat — 5×5 Protocol Begins', goal:'Drive your squat to 365+. 5×5 at 80% this week. Same rule — add 10 each week.',
+    exercises:[
+      {name:'Back Squat — 5×5',sets:5,reps:'5',weight:'252 lbs (80% of 315)'},
+      {name:'Pause Squat',sets:3,reps:'5',weight:'195 lbs — 3 sec pause at bottom'},
+      {name:'Romanian Deadlift',sets:3,reps:'8',weight:'215 lbs'},
+      {name:'Front Squat',sets:3,reps:'6',weight:'165 lbs — builds quad strength'},
+      {name:'Leg Curl',sets:3,reps:'12',weight:'add weight'},
+      {name:'Calf Raise',sets:4,reps:'15',weight:'loaded'}
+    ]},
+  { day:'WED', type:'SPEED & AGILITY', title:'Speed Work — Transition Phase', goal:'Maintain speed gains from Phase 1. Add resistance work for power transfer.',
+    exercises:[
+      {name:'Resisted Sprint (band or sled)',sets:6,reps:'20 yds',weight:'light resistance — feel the drive'},
+      {name:'Release Sprint',sets:6,reps:'20 yds',weight:'immediately after resisted — feel the speed'},
+      {name:'10yd Acceleration',sets:6,reps:'max effort',weight:'full rest'},
+      {name:'Pro Agility — 5-10-5',sets:8,reps:'each direction',weight:'beat your week 3 time'},
+      {name:'T-Drill',sets:6,reps:'each direction',weight:'time it'}
+    ]},
+  { day:'THU', type:'DEADLIFT — STRENGTH', title:'Deadlift & Posterior Chain', goal:'Deadlift builds the squat. Same energy as squat day — controlled, violent, loaded.',
+    exercises:[
+      {name:'Conventional Deadlift',sets:4,reps:'5',weight:'315–335 lbs — PULL'},
+      {name:'Barbell Row — Heavy',sets:4,reps:'6',weight:'225 lbs'},
+      {name:'Weighted Pull-Up',sets:4,reps:'6',weight:'+25–30 lbs'},
+      {name:'Glute Ham Raise',sets:3,reps:'8',weight:'bodyweight or light load'},
+      {name:'Barbell Shrug',sets:3,reps:'12',weight:'heavy — trap development'},
+      {name:'Face Pull',sets:3,reps:'15',weight:'health'}
+    ]},
+  { day:'FRI', type:'POWER', title:'Olympic Lifts & Explosive Work', goal:'Power cleans are becoming your secret weapon. Every rep should be violent and fast.',
+    exercises:[
+      {name:'Power Clean',sets:6,reps:'3',weight:'145–155 lbs — bar moves fast'},
+      {name:'Depth Jump to Box Jump',sets:4,reps:'4',weight:'16" drop box to 30" landing'},
+      {name:'Vertical Jump — Approach',sets:5,reps:'3',weight:'running approach — measure'},
+      {name:'Broad Jump',sets:4,reps:'4',weight:'max effort — beat baseline'},
+      {name:'Hex Bar Jump Squat',sets:4,reps:'5',weight:'135 lbs — explode up'}
+    ]},
+  { day:'SAT', type:'CONDITIONING', title:'Conditioning — Phase 2', goal:'Strength athletes skip conditioning. You\'re a football player. Do the work.',
+    exercises:[
+      {name:'400m Run',sets:4,reps:'full effort',weight:'rest 3 min between'},
+      {name:'Sled Push',sets:5,reps:'30 yds',weight:'heavy'},
+      {name:'Farmer Carry',sets:4,reps:'50 yds',weight:'70 lbs each hand'}
+    ]},
+  { day:'SUN', type:'REST', title:'Recovery', goal:'Sleep. Eat 1g protein per pound bodyweight. Minimum.',
+    exercises:[
+      {name:'Foam Roll + Stretch',sets:1,reps:'15 min',weight:'full body'}
+    ]}
+]},
+6: { phase:2, days:[
+  { day:'MON', type:'BENCH — STRENGTH', title:'Bench — Week 6 (+5 lbs)', goal:'5 more lbs. Every week. No exceptions. This is how a 275 becomes 315.',
+    exercises:[
+      {name:'Barbell Bench Press — 5×5',sets:5,reps:'5',weight:'225 lbs (+5)'},
+      {name:'Close-Grip Bench',sets:3,reps:'8',weight:'180 lbs'},
+      {name:'Incline Barbell Press',sets:3,reps:'8',weight:'175 lbs'},
+      {name:'DB Fly',sets:3,reps:'12',weight:'35–40 lbs'},
+      {name:'Overhead Press',sets:4,reps:'8',weight:'120 lbs'},
+      {name:'Weighted Dip',sets:3,reps:'10',weight:'+30 lbs'}
+    ]},
+  { day:'TUE', type:'SQUAT — STRENGTH', title:'Squat — Week 6 (+10 lbs)', goal:'262 lbs. Feels heavier. That\'s the point. Brace, breathe, squat.',
+    exercises:[
+      {name:'Back Squat — 5×5',sets:5,reps:'5',weight:'262 lbs (+10)'},
+      {name:'Pause Squat',sets:3,reps:'5',weight:'205 lbs'},
+      {name:'Romanian Deadlift',sets:3,reps:'8',weight:'225 lbs'},
+      {name:'Leg Press',sets:3,reps:'10',weight:'heavy — add a plate'},
+      {name:'Nordic Hamstring Curl',sets:3,reps:'6',weight:'bodyweight'},
+      {name:'Calf Raise',sets:4,reps:'15',weight:'loaded'}
+    ]},
+  { day:'WED', type:'SPEED & AGILITY', title:'Speed — Week 6', goal:'Resisted + released sprints. Plyometric warm-up before speed work.',
+    exercises:[
+      {name:'Jump Rope',sets:1,reps:'3 min',weight:'warm-up'},
+      {name:'Resisted Sprint',sets:6,reps:'20 yds',weight:'sled or band'},
+      {name:'Release Sprint',sets:6,reps:'20 yds',weight:'immediately after — feel the speed'},
+      {name:'5-10-5 Pro Agility',sets:8,reps:'timed',weight:'chase sub-4.5 sec'},
+      {name:'40yd Dash',sets:3,reps:'full run',weight:'log your time — track progress'}
+    ]},
+  { day:'THU', type:'DEADLIFT — STRENGTH', title:'Deadlift — Week 6', goal:'Pull more than last week. Heavy rows make heavy deadlifts.',
+    exercises:[
+      {name:'Conventional Deadlift',sets:4,reps:'5',weight:'325–345 lbs'},
+      {name:'Barbell Row',sets:4,reps:'6',weight:'235 lbs'},
+      {name:'Weighted Pull-Up',sets:4,reps:'6',weight:'+30 lbs'},
+      {name:'Glute Ham Raise',sets:3,reps:'8',weight:'add light load'},
+      {name:'Trap Bar Shrug',sets:3,reps:'15',weight:'heavy'},
+      {name:'Face Pull',sets:3,reps:'15',weight:'shoulder health'}
+    ]},
+  { day:'FRI', type:'POWER', title:'Power — Week 6', goal:'You should feel the difference from Phase 1. More explosive. More violent.',
+    exercises:[
+      {name:'Power Clean',sets:6,reps:'3',weight:'155–165 lbs'},
+      {name:'Depth Jump',sets:5,reps:'4',weight:'reactive ground contact'},
+      {name:'Vertical Jump',sets:5,reps:'3',weight:'measure — beat week 5'},
+      {name:'Hex Bar Jump Squat',sets:4,reps:'5',weight:'145 lbs'},
+      {name:'Ankle Hops',sets:3,reps:'20',weight:'stiff ankle — train the spring'}
+    ]},
+  { day:'SAT', type:'CONDITIONING', title:'Conditioning — Week 6', goal:'Add 10 lbs to sled. One more 400. Your lungs will thank you in August.',
+    exercises:[
+      {name:'400m Run',sets:5,reps:'full effort',weight:'rest 3 min'},
+      {name:'Sled Push — Heavy',sets:5,reps:'30 yds',weight:'+10 lbs from week 5'},
+      {name:'Battle Ropes',sets:4,reps:'30 sec all-out',weight:'no rest between arms'}
+    ]},
+  { day:'SUN', type:'REST', title:'Recovery', goal:'Your body grows on rest days, not training days.',
+    exercises:[
+      {name:'Stretch + Foam Roll',sets:1,reps:'15 min',weight:'full body'}
+    ]}
+]},
+7: { phase:2, days:[
+  { day:'MON', type:'BENCH — STRENGTH', title:'Bench — Week 7 (+5 lbs)', goal:'You\'ve now added 15 lbs to your training weight in 3 weeks. The adaptation is real.',
+    exercises:[
+      {name:'Barbell Bench Press — 5×5',sets:5,reps:'5',weight:'230 lbs'},
+      {name:'Close-Grip Bench',sets:4,reps:'6',weight:'185 lbs — go heavy'},
+      {name:'Incline Barbell',sets:3,reps:'8',weight:'180 lbs'},
+      {name:'Cable Fly',sets:3,reps:'15',weight:'squeeze at peak'},
+      {name:'Push Press',sets:3,reps:'6',weight:'135 lbs — explosive'},
+      {name:'Tricep Pushdown',sets:4,reps:'12',weight:'heavy'}
+    ]},
+  { day:'TUE', type:'SQUAT — STRENGTH', title:'Squat — Week 7', goal:'272 lbs. Your form must be locked. Belt goes on. Record the set.',
+    exercises:[
+      {name:'Back Squat — 5×5',sets:5,reps:'5',weight:'272 lbs (+10)'},
+      {name:'Box Squat',sets:3,reps:'5',weight:'225 lbs — builds power out of hole'},
+      {name:'Romanian Deadlift',sets:4,reps:'8',weight:'235 lbs'},
+      {name:'Walking Lunge',sets:3,reps:'12 each',weight:'60 lbs per hand'},
+      {name:'Leg Curl',sets:4,reps:'10',weight:'heavy'},
+      {name:'Calf Raise',sets:4,reps:'15',weight:'heavy'}
+    ]},
+  { day:'WED', type:'SPEED & AGILITY', title:'Speed + Change of Direction — Week 7', goal:'Add the L-drill. Film everything. Agility separates good from elite.',
+    exercises:[
+      {name:'Dynamic Warm-Up',sets:1,reps:'10 min',weight:'full sequence'},
+      {name:'Resisted Sprint',sets:6,reps:'20 yds',weight:'sled'},
+      {name:'Release Sprint',sets:6,reps:'20 yds',weight:'fly'},
+      {name:'L-Drill (NFL Combine)',sets:6,reps:'each direction',weight:'time it'},
+      {name:'5-10-5',sets:6,reps:'timed',weight:'beat last week'},
+      {name:'Flying 10',sets:4,reps:'10 yds',weight:'30yd run-in — pure top speed'}
+    ]},
+  { day:'THU', type:'DEADLIFT — STRENGTH', title:'Deadlift — Week 7', goal:'Pull heavy. Build the posterior chain. Everything on the field comes from behind you.',
+    exercises:[
+      {name:'Conventional Deadlift',sets:4,reps:'5',weight:'335–355 lbs'},
+      {name:'Sumo Deadlift',sets:3,reps:'5',weight:'275 lbs — hip mobility work'},
+      {name:'Barbell Row',sets:4,reps:'6',weight:'245 lbs'},
+      {name:'Weighted Pull-Up',sets:4,reps:'6',weight:'+35 lbs'},
+      {name:'Back Extension',sets:3,reps:'15',weight:'bodyweight or +25 lbs'},
+      {name:'Face Pull',sets:3,reps:'15',weight:'health'}
+    ]},
+  { day:'FRI', type:'POWER', title:'Power — Week 7', goal:'Your cleans should be moving faster than Phase 1. The strength is transferring.',
+    exercises:[
+      {name:'Power Clean',sets:6,reps:'3',weight:'165–175 lbs'},
+      {name:'Push Jerk',sets:4,reps:'4',weight:'135 lbs — train the explosion'},
+      {name:'Vertical Jump',sets:5,reps:'3',weight:'log best jump — compare to baseline'},
+      {name:'Bounding',sets:4,reps:'5 contacts',weight:'single-leg → double leg → repeat'},
+      {name:'Hex Bar Jump Squat',sets:4,reps:'5',weight:'155 lbs'}
+    ]},
+  { day:'SAT', type:'CONDITIONING', title:'Conditioning — Week 7', goal:'Starting to feel strong AND conditioned. That\'s where football players live.',
+    exercises:[
+      {name:'300yd Shuttle',sets:3,reps:'25yd × 12',weight:'rest 3 min between — football-specific'},
+      {name:'Sled Push',sets:5,reps:'30 yds',weight:'heavy'},
+      {name:'Med Ball Slam',sets:4,reps:'15',weight:'25 lb ball — violent'}
+    ]},
+  { day:'SUN', type:'REST', title:'Recovery', goal:'Halfway through Phase 2. You\'re getting stronger every week.',
+    exercises:[
+      {name:'Active Recovery Walk',sets:1,reps:'20 min',weight:'easy'},
+      {name:'Foam Roll',sets:1,reps:'15 min',weight:'full body'}
+    ]}
+]},
+8: { phase:2, days:[
+  { day:'MON', type:'BENCH — STRENGTH', title:'Bench — Week 8 (Heavy 3s Begin)', goal:'Drop to 3 reps. Load goes up. This week you\'ll bench 85% of your max.',
+    exercises:[
+      {name:'Barbell Bench Press — 4×3',sets:4,reps:'3',weight:'235 lbs (85% of 275)'},
+      {name:'Paused Bench Press',sets:3,reps:'5',weight:'185 lbs — 2 sec pause on chest'},
+      {name:'Incline Barbell Press',sets:3,reps:'8',weight:'185 lbs'},
+      {name:'Weighted Dip',sets:4,reps:'8',weight:'+35 lbs'},
+      {name:'Overhead Press',sets:4,reps:'6',weight:'135 lbs'},
+      {name:'Skull Crusher',sets:3,reps:'10',weight:'heavy'}
+    ]},
+  { day:'TUE', type:'SQUAT — STRENGTH', title:'Squat — Week 8 (Heavy 3s Begin)', goal:'85% of squat max. This is 268 lbs for 3 reps × 4 sets. Own it.',
+    exercises:[
+      {name:'Back Squat — 4×3',sets:4,reps:'3',weight:'268 lbs (85% of 315)'},
+      {name:'Pause Squat',sets:3,reps:'3',weight:'225 lbs — 3 sec pause'},
+      {name:'Box Squat',sets:3,reps:'5',weight:'235 lbs'},
+      {name:'Romanian Deadlift',sets:4,reps:'6',weight:'245 lbs'},
+      {name:'Leg Press',sets:3,reps:'10',weight:'heavy'},
+      {name:'Calf Raise',sets:4,reps:'15',weight:'max load'}
+    ]},
+  { day:'WED', type:'SPEED & AGILITY', title:'Speed — Week 8 (Timed Testing)', goal:'Run your 40 again. You should see improvement from Week 3 baseline.',
+    exercises:[
+      {name:'Full Warm-Up Protocol',sets:1,reps:'15 min',weight:'do not skip'},
+      {name:'40yd Dash — Timed',sets:5,reps:'full run',weight:'compare to Week 3 baseline — log every time'},
+      {name:'Vertical Jump — Timed Test',sets:5,reps:'max effort',weight:'compare to baseline — log height'},
+      {name:'Pro Agility',sets:6,reps:'both directions',weight:'log times'},
+      {name:'Flying 10',sets:4,reps:'10 yds fly',weight:'top speed'}
+    ]},
+  { day:'THU', type:'DEADLIFT — STRENGTH', title:'Deadlift — Week 8 (Heavy)', goal:'Hit a new training PR on the deadlift. Your posterior chain is ready.',
+    exercises:[
+      {name:'Conventional Deadlift — 4×3',sets:4,reps:'3',weight:'355–375 lbs'},
+      {name:'Barbell Row',sets:4,reps:'5',weight:'255 lbs — chest touches bar'},
+      {name:'Weighted Pull-Up',sets:4,reps:'5',weight:'+40 lbs'},
+      {name:'Glute Ham Raise',sets:3,reps:'8',weight:'light load'},
+      {name:'Rack Pull',sets:3,reps:'5',weight:'385+ lbs — overload the top'},
+      {name:'Face Pull',sets:3,reps:'15',weight:'health'}
+    ]},
+  { day:'FRI', type:'POWER', title:'Power — Week 8', goal:'You\'re stronger. The power output should reflect that. Every jump, every clean.',
+    exercises:[
+      {name:'Power Clean',sets:5,reps:'3',weight:'175–185 lbs'},
+      {name:'Clean Pull',sets:4,reps:'4',weight:'195 lbs — speed pull from floor'},
+      {name:'Depth Jump',sets:5,reps:'4',weight:'reactive — no hesitation'},
+      {name:'Approach Vertical',sets:5,reps:'3',weight:'measure — log'},
+      {name:'Hex Bar Jump',sets:4,reps:'5',weight:'165 lbs'}
+    ]},
+  { day:'SAT', type:'CONDITIONING', title:'Conditioning — Week 8', goal:'Football conditioning. Not gym conditioning. Build your work capacity.',
+    exercises:[
+      {name:'300yd Shuttle',sets:4,reps:'25yd × 12',weight:'rest 3 min each'},
+      {name:'Heavy Sled Push',sets:6,reps:'20 yds',weight:'as heavy as possible'},
+      {name:'Rower — 500m Repeats',sets:4,reps:'all out',weight:'rest 2 min between'}
+    ]},
+  { day:'SUN', type:'REST', title:'Recovery', goal:'Week 8. 12 to go. You\'re over the hump.',
+    exercises:[
+      {name:'Foam Roll + Stretch',sets:1,reps:'20 min',weight:'full body priority'}
+    ]}
+]},
+9: { phase:2, days:[
+  { day:'MON', type:'DELOAD UPPER', title:'Phase 2 Deload — Upper', goal:'Intentional deload. Cut volume and load. Let the nervous system reset before Phase 3.',
+    exercises:[
+      {name:'Bench Press',sets:3,reps:'5',weight:'185 lbs — easy and fast'},
+      {name:'Row',sets:3,reps:'8',weight:'155 lbs'},
+      {name:'Face Pull',sets:3,reps:'15',weight:'light — shoulders feel good'}
+    ]},
+  { day:'TUE', type:'DELOAD LOWER', title:'Phase 2 Deload — Lower', goal:'Move the joints. Flush the legs. Come back hungry for Phase 3.',
+    exercises:[
+      {name:'Back Squat',sets:3,reps:'5',weight:'205 lbs — easy'},
+      {name:'Romanian Deadlift',sets:2,reps:'8',weight:'165 lbs'},
+      {name:'Leg Press',sets:2,reps:'12',weight:'moderate'}
+    ]},
+  { day:'WED', type:'MOVEMENT', title:'Movement Quality Day', goal:'Film your sprint mechanics. Watch your arm action. Fix what\'s broken going into Phase 3.',
+    exercises:[
+      {name:'Wall Drills',sets:3,reps:'10 each',weight:'slow and perfect'},
+      {name:'Stride-Out Runs',sets:4,reps:'30 yds',weight:'75%'},
+      {name:'Agility Ladder',sets:3,reps:'2 patterns',weight:'accuracy not speed'}
+    ]},
+  { day:'THU', type:'REST', title:'Rest', goal:'Sleep. Your body is about to do something special.',
+    exercises:[
+      {name:'Walk',sets:1,reps:'20 min',weight:'easy'}
+    ]},
+  { day:'FRI', type:'LIGHT POWER', title:'Light Power — Phase 2 Close', goal:'Keep the explosive patterns. Nothing heavy. Feel fast and athletic going into Phase 3.',
+    exercises:[
+      {name:'Power Clean',sets:3,reps:'3',weight:'115 lbs — fast and crisp'},
+      {name:'Box Jump',sets:3,reps:'3',weight:'comfortable height'},
+      {name:'Broad Jump',sets:3,reps:'3',weight:'75% effort'}
+    ]},
+  { day:'SAT', type:'REST', title:'Rest', goal:'Prepare for Phase 3. This is where the athlete emerges.',
+    exercises:[
+      {name:'Stretch',sets:1,reps:'20 min',weight:'full body mobility'}
+    ]},
+  { day:'SUN', type:'REST', title:'Rest & Log Progress', goal:'Write down your current bench, squat, 40 time, and vertical. You should see real numbers moving.',
+    exercises:[
+      {name:'Log Progress',sets:1,reps:'track all numbers',weight:'bench / squat / 40yd / vertical / bodyweight'}
+    ]}
+]},
+// ════════════════════════════════════════════════════════
+// PHASE 3 — POWER & SPEED (Weeks 10–14)
+// Goal: Transfer strength to explosive output. 40yd, vertical, agility peak.
+// ════════════════════════════════════════════════════════
+10: { phase:3, days:[
+  { day:'MON', type:'STRENGTH-SPEED', title:'Bench + Explosive Push — Phase 3 Opens', goal:'Strength + speed same day. Heavy set first, then explosive reps at 60%. This is conjugate-style training.',
+    exercises:[
+      {name:'Barbell Bench Press — Heavy 3',sets:5,reps:'3',weight:'245 lbs — 89% of 275'},
+      {name:'Speed Bench (60% 1RM)',sets:8,reps:'3',weight:'165 lbs — move the bar as fast as possible'},
+      {name:'Plyometric Push-Up',sets:4,reps:'8',weight:'explode off the floor — clap if able'},
+      {name:'Med Ball Chest Pass',sets:4,reps:'10',weight:'throw hard into wall — 20 lb ball'},
+      {name:'Overhead Press',sets:3,reps:'6',weight:'135 lbs'},
+      {name:'Tricep Work',sets:3,reps:'10',weight:'heavy'}
+    ]},
+  { day:'TUE', type:'STRENGTH-SPEED', title:'Squat + Explosive Lower — Phase 3 Opens', goal:'Heavy squat then jump squats at 30%. This builds rate of force development. Your vertical will spike.',
+    exercises:[
+      {name:'Back Squat — Heavy 3',sets:5,reps:'3',weight:'284 lbs — 90% of 315'},
+      {name:'Jump Squat (30% 1RM)',sets:6,reps:'5',weight:'95 lbs — maximum intent on every rep'},
+      {name:'Single-Leg Box Jump',sets:4,reps:'5 each',weight:'24" box — land controlled'},
+      {name:'Bulgarian Split Squat',sets:3,reps:'8 each',weight:'60 lbs per hand'},
+      {name:'Glute Ham Raise',sets:3,reps:'8',weight:'add weight'},
+      {name:'Calf Raise',sets:4,reps:'15',weight:'heavy — Achilles stiffness = speed'}
+    ]},
+  { day:'WED', type:'SPEED — PHASE 3', title:'Speed Day — All Out', goal:'This is a true speed session. Warm up fully. Run until every sprint is 95%+. No junk reps.',
+    exercises:[
+      {name:'Sprint Warm-Up Protocol',sets:1,reps:'15 min',weight:'full sequence required'},
+      {name:'10yd Acceleration',sets:8,reps:'max effort',weight:'full rest — 2 min each'},
+      {name:'40yd Dash — Timed',sets:5,reps:'full run',weight:'log every time — target sub-baseline'},
+      {name:'Flying 20',sets:4,reps:'20 yds fly',weight:'20yd run-in — pure top speed'},
+      {name:'5-10-5 — Timed',sets:6,reps:'each direction',weight:'go for PR'},
+      {name:'L-Drill',sets:6,reps:'each direction',weight:'timed — log results'}
+    ]},
+  { day:'THU', type:'PULL + POSTERIOR', title:'Heavy Pull Day', goal:'Deadlifts are your secret bench and squat builder. Pull heavy. Row heavy.',
+    exercises:[
+      {name:'Deadlift — Heavy',sets:4,reps:'3',weight:'365–385 lbs'},
+      {name:'Speed Deadlift (60%)',sets:6,reps:'3',weight:'190 lbs — rip it off the floor'},
+      {name:'Barbell Row',sets:4,reps:'6',weight:'255 lbs'},
+      {name:'Weighted Pull-Up',sets:4,reps:'6',weight:'+40 lbs'},
+      {name:'Back Extension',sets:3,reps:'15',weight:'+45 lbs plate'},
+      {name:'Face Pull',sets:3,reps:'15',weight:'health protocol'}
+    ]},
+  { day:'FRI', type:'POWER + PLYOS', title:'Peak Power Day — Phase 3', goal:'Your best power day of the program. Every jump, every throw is measured. Beat your baseline.',
+    exercises:[
+      {name:'Power Clean',sets:6,reps:'3',weight:'185–195 lbs — crisp and violent'},
+      {name:'Push Jerk',sets:4,reps:'4',weight:'155 lbs'},
+      {name:'Depth Drop to Vertical Jump',sets:5,reps:'4',weight:'maximize height — log every rep'},
+      {name:'Approach Vertical',sets:5,reps:'3',weight:'log best jump — compare to Week 8'},
+      {name:'Broad Jump',sets:5,reps:'4',weight:'max effort — measure'},
+      {name:'Ankle Complex (hops/bounds)',sets:4,reps:'10 contacts',weight:'reactive stiffness'}
+    ]},
+  { day:'SAT', type:'CONDITIONING', title:'Football Conditioning — Phase 3', goal:'High-intensity intervals. Game simulation. You should be gassed by the end.',
+    exercises:[
+      {name:'40yd Sprint Repeats',sets:10,reps:'40 yds',weight:'rest 30 sec between — game pace'},
+      {name:'Sled Push',sets:6,reps:'20 yds',weight:'heavy'},
+      {name:'Gasser (110yd shuttle)',sets:4,reps:'end-to-end-to-end',weight:'rest 90 sec — brutal'}
+    ]},
+  { day:'SUN', type:'REST', title:'Recovery', goal:'Phase 3 is the hardest phase. Recover like it matters. Because it does.',
+    exercises:[
+      {name:'Ice Bath or Contrast Shower',sets:1,reps:'10 min',weight:'if available'},
+      {name:'Foam Roll + Stretch',sets:1,reps:'20 min',weight:'full body'}
+    ]}
+]},
+11: { phase:3, days:[
+  { day:'MON', type:'STRENGTH-SPEED', title:'Bench + Speed Work — Week 11', goal:'Add 5 lbs to heavy bench. Speed bench stays at 60%. Let the bar move.',
+    exercises:[
+      {name:'Bench Press — Heavy 3',sets:5,reps:'3',weight:'250 lbs'},
+      {name:'Speed Bench (60%)',sets:8,reps:'3',weight:'165 lbs — bar velocity matters'},
+      {name:'Plyometric Push-Up',sets:4,reps:'10',weight:'explode'},
+      {name:'DB Incline — Heavy',sets:3,reps:'8',weight:'90–100 lbs'},
+      {name:'Push Press',sets:4,reps:'5',weight:'155 lbs'},
+      {name:'Tricep Work',sets:3,reps:'10',weight:'heavy'}
+    ]},
+  { day:'TUE', type:'STRENGTH-SPEED', title:'Squat + Jump Training — Week 11', goal:'Add 5 lbs to heavy squat. Same jump squat protocol. More explosive every week.',
+    exercises:[
+      {name:'Back Squat — Heavy 3',sets:5,reps:'3',weight:'290 lbs'},
+      {name:'Jump Squat (30%)',sets:6,reps:'5',weight:'95 lbs — move FAST'},
+      {name:'Depth Jump to Sprint',sets:4,reps:'4',weight:'land and sprint 10 yds immediately'},
+      {name:'Bulgarian Split Squat',sets:3,reps:'8 each',weight:'65 lbs per hand'},
+      {name:'Glute Ham Raise',sets:3,reps:'8',weight:'weighted'},
+      {name:'Calf Raise',sets:4,reps:'15',weight:'loaded'}
+    ]},
+  { day:'WED', type:'SPEED', title:'Speed + Agility — Week 11', goal:'More volume on the agility drills. Your reaction time is sharpening.',
+    exercises:[
+      {name:'Sprint Warm-Up',sets:1,reps:'15 min',weight:'full protocol'},
+      {name:'40yd Dash',sets:4,reps:'timed',weight:'log all times'},
+      {name:'5-10-5',sets:8,reps:'both directions',weight:'log best time'},
+      {name:'L-Drill',sets:6,reps:'both directions',weight:'log times'},
+      {name:'Reactive Agility Drill',sets:6,reps:'random cuts',weight:'partner calls direction or cone to touch'}
+    ]},
+  { day:'THU', type:'PULL + POSTERIOR', title:'Pull Day — Week 11', goal:'Keep the posterior chain strong. Your squat and dead numbers depend on this.',
+    exercises:[
+      {name:'Deadlift',sets:4,reps:'3',weight:'375–395 lbs'},
+      {name:'Speed Deadlift',sets:6,reps:'3',weight:'200 lbs'},
+      {name:'Barbell Row',sets:4,reps:'6',weight:'265 lbs'},
+      {name:'Weighted Pull-Up',sets:4,reps:'6',weight:'+45 lbs'},
+      {name:'GHD Raise',sets:3,reps:'10',weight:'bodyweight'},
+      {name:'Shrug',sets:3,reps:'15',weight:'heavy'}
+    ]},
+  { day:'FRI', type:'POWER + PLYOS', title:'Power Day — Week 11', goal:'You should be jumping higher than your baseline right now. The program is working.',
+    exercises:[
+      {name:'Power Clean',sets:6,reps:'3',weight:'190–200 lbs'},
+      {name:'Hang Snatch',sets:4,reps:'3',weight:'95 lbs — if trained; alt: DB snatch'},
+      {name:'Vertical Jump',sets:5,reps:'3',weight:'log best — should beat Week 8'},
+      {name:'Approach Vertical',sets:5,reps:'3',weight:'log best'},
+      {name:'Triple Broad Jump',sets:4,reps:'3 bounds',weight:'measure total distance'}
+    ]},
+  { day:'SAT', type:'CONDITIONING', title:'Game-Pace Conditioning — Week 11', goal:'Everything you do in conditioning shows up in Q4. Do the work.',
+    exercises:[
+      {name:'40yd Sprint Repeats',sets:12,reps:'40 yds',weight:'30 sec rest'},
+      {name:'Sled Push',sets:6,reps:'20 yds heavy',weight:'maximal load'},
+      {name:'Gasser',sets:3,reps:'110yd shuttle',weight:'rest 90 sec between'}
+    ]},
+  { day:'SUN', type:'REST', title:'Recovery', goal:'Eat big. Sleep 8+. Repeat.',
+    exercises:[
+      {name:'Foam Roll + Stretch',sets:1,reps:'20 min',weight:'full body'}
+    ]}
+]},
+12: { phase:3, days:[
+  { day:'MON', type:'STRENGTH-SPEED', title:'Bench — Week 12 (Near Max)', goal:'255 lbs for 3. You\'re within 20 lbs of your max and moving it for reps. Speed work follows.',
+    exercises:[
+      {name:'Bench Press — Heavy 3',sets:5,reps:'3',weight:'255 lbs'},
+      {name:'Speed Bench',sets:8,reps:'3',weight:'165 lbs — FAST'},
+      {name:'Paused Bench Press',sets:3,reps:'3',weight:'200 lbs — 3 sec on chest'},
+      {name:'Incline Barbell',sets:3,reps:'8',weight:'185 lbs'},
+      {name:'Weighted Dip',sets:3,reps:'8',weight:'+40 lbs'},
+      {name:'Tricep Pushdown',sets:3,reps:'12',weight:'heavy'}
+    ]},
+  { day:'TUE', type:'STRENGTH-SPEED', title:'Squat — Week 12', goal:'295 lbs. 6 lbs below your Phase 1 max. But now you\'re doing it for reps with speed work after.',
+    exercises:[
+      {name:'Back Squat — Heavy 3',sets:5,reps:'3',weight:'295 lbs'},
+      {name:'Jump Squat',sets:6,reps:'5',weight:'95 lbs — fast'},
+      {name:'Pause Squat',sets:3,reps:'3',weight:'235 lbs'},
+      {name:'Romanian Deadlift',sets:4,reps:'6',weight:'255 lbs'},
+      {name:'Leg Press',sets:3,reps:'10',weight:'heavy'},
+      {name:'Calf Raise',sets:4,reps:'15',weight:'max'}
+    ]},
+  { day:'WED', type:'SPEED', title:'Speed + Vertical Test — Week 12', goal:'Official mid-program speed testing. Run your 40. Test your vertical. Log everything.',
+    exercises:[
+      {name:'40yd Dash — OFFICIAL TEST',sets:5,reps:'full run',weight:'log every rep — this is your mid-program benchmark'},
+      {name:'Vertical Jump — OFFICIAL TEST',sets:5,reps:'max effort',weight:'log height — compare to baseline'},
+      {name:'Broad Jump — OFFICIAL TEST',sets:4,reps:'max effort',weight:'log distance'},
+      {name:'5-10-5 — OFFICIAL TEST',sets:4,reps:'both directions',weight:'log times'}
+    ]},
+  { day:'THU', type:'PULL + POSTERIOR', title:'Heavy Pull — Week 12', goal:'This week\'s deadlift is a PR attempt if form is solid. Pull something you\'ve never pulled.',
+    exercises:[
+      {name:'Deadlift — PR Attempt',sets:3,reps:'1–2',weight:'390–410 lbs — controlled and violent'},
+      {name:'Barbell Row',sets:4,reps:'5',weight:'265 lbs'},
+      {name:'Weighted Pull-Up',sets:4,reps:'5',weight:'+50 lbs'},
+      {name:'Back Extension',sets:3,reps:'15',weight:'+45 lbs'}
+    ]},
+  { day:'FRI', type:'POWER', title:'Power Day — Week 12', goal:'One of the best power sessions of the program. You\'re the strongest and most explosive you\'ve ever been.',
+    exercises:[
+      {name:'Power Clean — Heavy',sets:6,reps:'2',weight:'195–205 lbs'},
+      {name:'Depth Jump',sets:5,reps:'4',weight:'maximum reactive effort'},
+      {name:'Vertical Jump',sets:5,reps:'3',weight:'go for height PR'},
+      {name:'Broad Jump',sets:5,reps:'3',weight:'distance PR attempt'}
+    ]},
+  { day:'SAT', type:'CONDITIONING', title:'Conditioning — Week 12', goal:'12 weeks in. The work is showing.',
+    exercises:[
+      {name:'300yd Shuttle',sets:4,reps:'25yd × 12',weight:'rest 3 min — beat your times'},
+      {name:'Heavy Sled Push',sets:6,reps:'20 yds',weight:'maximum weight'},
+      {name:'Assault Bike',sets:5,reps:'20 sec all-out / 40 off',weight:'gas tank'}
+    ]},
+  { day:'SUN', type:'REST', title:'Recovery', goal:'You\'re 60% done. Your numbers should be noticeably moving.',
+    exercises:[
+      {name:'Foam Roll + Stretch',sets:1,reps:'20 min',weight:'full body'}
+    ]}
+]},
+13: { phase:3, days:[
+  { day:'MON', type:'STRENGTH-SPEED', title:'Bench — Week 13 (Volume Spike)', goal:'Back to 5×5 but with more weight than Phase 2. The strength base is showing.',
+    exercises:[
+      {name:'Bench Press — 5×5',sets:5,reps:'5',weight:'240 lbs — heavier than Phase 2 5×5'},
+      {name:'Speed Bench',sets:8,reps:'3',weight:'165 lbs — bar speed'},
+      {name:'Close-Grip Bench',sets:3,reps:'8',weight:'195 lbs'},
+      {name:'Dumbbell Press',sets:3,reps:'10',weight:'95–105 lbs'},
+      {name:'Overhead Press',sets:3,reps:'6',weight:'145 lbs'},
+      {name:'Tricep Dip',sets:3,reps:'10',weight:'+40 lbs'}
+    ]},
+  { day:'TUE', type:'STRENGTH-SPEED', title:'Squat — Week 13 (Volume Spike)', goal:'5×5 at 300. 15 lbs above your Phase 2 5×5 peak. Your legs are a different animal.',
+    exercises:[
+      {name:'Back Squat — 5×5',sets:5,reps:'5',weight:'300 lbs'},
+      {name:'Jump Squat',sets:6,reps:'5',weight:'95 lbs'},
+      {name:'Box Squat',sets:3,reps:'5',weight:'255 lbs — off parallel box'},
+      {name:'Romanian Deadlift',sets:4,reps:'6',weight:'255 lbs'},
+      {name:'Walking Lunge',sets:3,reps:'12 each',weight:'65 lbs per hand'},
+      {name:'Calf Raise',sets:4,reps:'15',weight:'heavy'}
+    ]},
+  { day:'WED', type:'SPEED', title:'Speed Refinement — Week 13', goal:'Fine-tune your mechanics based on film. The strength is there. Now it\'s about efficiency.',
+    exercises:[
+      {name:'Sprint Mechanics Review',sets:1,reps:'10 min drill work',weight:'fix what film shows'},
+      {name:'Resisted + Released Sprint',sets:8,reps:'20 yds each',weight:'maximum contrast'},
+      {name:'40yd Dash',sets:4,reps:'timed',weight:'log — should be trending down'},
+      {name:'Reactive Agility',sets:8,reps:'random',weight:'live reaction — partner driven'}
+    ]},
+  { day:'THU', type:'PULL + POSTERIOR', title:'Pull Day — Week 13', goal:'Keep the posterior chain primed. Strength retention through Phase 3.',
+    exercises:[
+      {name:'Deadlift',sets:4,reps:'4',weight:'365 lbs — volume at heavy weight'},
+      {name:'Barbell Row',sets:4,reps:'6',weight:'265 lbs'},
+      {name:'Weighted Pull-Up',sets:5,reps:'5',weight:'+45 lbs'},
+      {name:'GHR',sets:3,reps:'10',weight:'weighted'},
+      {name:'Shrug',sets:3,reps:'15',weight:'heavy'}
+    ]},
+  { day:'FRI', type:'POWER', title:'Power Day — Week 13', goal:'Keep pushing vertical and broad jump numbers. Phase 4 is the transfer.',
+    exercises:[
+      {name:'Power Clean',sets:5,reps:'3',weight:'195–205 lbs'},
+      {name:'Vertical Jump',sets:6,reps:'3',weight:'log every attempt'},
+      {name:'Approach Vertical',sets:5,reps:'3',weight:'log'},
+      {name:'Depth Jump to Sprint',sets:5,reps:'land and sprint 10 yds',weight:'reactive'},
+      {name:'Broad Jump',sets:5,reps:'3',weight:'log distance'}
+    ]},
+  { day:'SAT', type:'CONDITIONING', title:'Conditioning — Week 13', goal:'Three more weeks of Phase 3. Your conditioning is elite by now.',
+    exercises:[
+      {name:'40yd Sprint Repeats',sets:15,reps:'40 yds',weight:'30 sec rest — peak volume'},
+      {name:'Sled Push',sets:6,reps:'20 yds',weight:'heavy'},
+      {name:'Gasser',sets:4,reps:'110yd shuttle',weight:'rest 90 sec'}
+    ]},
+  { day:'SUN', type:'REST', title:'Recovery', goal:'Three more hard weeks. Stay the course.',
+    exercises:[
+      {name:'Foam Roll + Stretch',sets:1,reps:'20 min',weight:'full body'}
+    ]}
+]},
+14: { phase:3, days:[
+  { day:'MON', type:'DELOAD UPPER', title:'Phase 3 Deload — Upper', goal:'Mandatory deload. Cut everything in half. Let the nervous system reset for Phase 4 peak.',
+    exercises:[
+      {name:'Bench Press',sets:3,reps:'5',weight:'195 lbs — easy and fast'},
+      {name:'Row',sets:3,reps:'8',weight:'165 lbs'},
+      {name:'Face Pull',sets:3,reps:'15',weight:'light'}
+    ]},
+  { day:'TUE', type:'DELOAD LOWER', title:'Phase 3 Deload — Lower', goal:'Move the legs. Flush the system. Prepare for Phase 4 peak strength.',
+    exercises:[
+      {name:'Back Squat',sets:3,reps:'5',weight:'215 lbs — crisp and controlled'},
+      {name:'Romanian Deadlift',sets:2,reps:'8',weight:'175 lbs'},
+      {name:'Box Jump',sets:3,reps:'3',weight:'easy height — stay explosive'}
+    ]},
+  { day:'WED', type:'MOVEMENT', title:'Speed — Low Volume', goal:'A few easy runs. Keep the patterns. Don\'t kill yourself before Phase 4.',
+    exercises:[
+      {name:'Sprint Warm-Up',sets:1,reps:'10 min',weight:'easy'},
+      {name:'Stride-Out Runs',sets:4,reps:'30 yds',weight:'75%'},
+      {name:'Agility Ladder',sets:3,reps:'2 patterns',weight:'low intensity'}
+    ]},
+  { day:'THU', type:'REST', title:'Rest', goal:'Sleep. Eat. Prepare mentally for Phase 4.',
+    exercises:[
+      {name:'Walk',sets:1,reps:'20 min',weight:'easy'}
+    ]},
+  { day:'FRI', type:'LIGHT POWER', title:'Light Power — Phase 3 Close', goal:'Stay explosive. Don\'t load heavy. Come into Phase 4 fresh and ready to peak.',
+    exercises:[
+      {name:'Power Clean',sets:3,reps:'3',weight:'125 lbs — fast'},
+      {name:'Box Jump',sets:3,reps:'3',weight:'comfortable height'},
+      {name:'Vertical Jump',sets:3,reps:'2',weight:'easy — stay sharp'}
+    ]},
+  { day:'SAT', type:'REST', title:'Rest', goal:'Two more phases to go. You\'ve built the foundation and the power. Now you peak.',
+    exercises:[
+      {name:'Stretch',sets:1,reps:'20 min',weight:'full body mobility'}
+    ]},
+  { day:'SUN', type:'REST', title:'Rest & Reflect', goal:'Log your mid-program numbers. 40 time, vertical, broad jump, estimated bench/squat max. The progress should be visible.',
+    exercises:[
+      {name:'Log All Metrics',sets:1,reps:'write them down',weight:'compare to baseline and Week 8'}
+    ]}
+]},
+// ════════════════════════════════════════════════════════
+// PHASE 4 — PEAK & TRANSFER (Weeks 15–20)
+// Goal: Peak strength maxes, transfer to sport, hit the field ready
+// ════════════════════════════════════════════════════════
+15: { phase:4, days:[
+  { day:'MON', type:'PEAK BENCH', title:'Bench — Phase 4 Peak Begins', goal:'New territory. 91% of training max. Set up like a meet — belt, chalk, fired up. This is the run to 315+.',
+    exercises:[
+      {name:'Bench Press — Heavy Single',sets:5,reps:'1–2',weight:'252–260 lbs (91–95% of 275)'},
+      {name:'Speed Bench',sets:6,reps:'3',weight:'165 lbs — maximum bar velocity'},
+      {name:'Weighted Dip — Heavy',sets:4,reps:'6',weight:'+45–50 lbs'},
+      {name:'Incline Press',sets:3,reps:'8',weight:'185 lbs'},
+      {name:'Overhead Press',sets:3,reps:'5',weight:'145 lbs'},
+      {name:'Tricep Pushdown',sets:3,reps:'12',weight:'heavy'}
+    ]},
+  { day:'TUE', type:'PEAK SQUAT', title:'Squat — Phase 4 Peak Begins', goal:'Same energy. Heavy singles and doubles. Your squat is chasing 365–385 by Week 19.',
+    exercises:[
+      {name:'Back Squat — Heavy Single',sets:5,reps:'1–2',weight:'300–310 lbs (95–98% of 315)'},
+      {name:'Jump Squat',sets:5,reps:'5',weight:'95 lbs — keep the explosiveness'},
+      {name:'Box Squat',sets:3,reps:'5',weight:'255 lbs'},
+      {name:'Romanian Deadlift',sets:3,reps:'6',weight:'255 lbs'},
+      {name:'Leg Press',sets:3,reps:'10',weight:'heavy'},
+      {name:'Calf Raise',sets:4,reps:'15',weight:'loaded'}
+    ]},
+  { day:'WED', type:'SPEED — PEAK', title:'Speed Day — Phase 4 Peak', goal:'You are now the fastest and most explosive version of you. Run. Jump. Time it. Film it.',
+    exercises:[
+      {name:'Full Sprint Warm-Up',sets:1,reps:'15 min',weight:'mandatory'},
+      {name:'40yd Dash — Timed',sets:6,reps:'full run',weight:'goal: PR from baseline — log every run'},
+      {name:'Vertical Jump',sets:5,reps:'max effort',weight:'log all — should be beating Week 12'},
+      {name:'5-10-5',sets:6,reps:'both directions',weight:'log times'},
+      {name:'Flying 20',sets:4,reps:'top speed',weight:'maximum velocity'}
+    ]},
+  { day:'THU', type:'PEAK DEADLIFT', title:'Deadlift — Phase 4 Peak', goal:'Heavy deadlifts carry over to squat strength. Pull maximal loads.',
+    exercises:[
+      {name:'Deadlift — Heavy',sets:4,reps:'2',weight:'385–405 lbs'},
+      {name:'Speed Deadlift',sets:5,reps:'3',weight:'215 lbs — rip it fast'},
+      {name:'Barbell Row',sets:4,reps:'5',weight:'275 lbs'},
+      {name:'Weighted Pull-Up',sets:4,reps:'5',weight:'+50 lbs'},
+      {name:'Face Pull',sets:3,reps:'15',weight:'shoulder health'}
+    ]},
+  { day:'FRI', type:'POWER', title:'Power Day — Week 15', goal:'Your power output should be at its highest. Every metric should beat previous bests.',
+    exercises:[
+      {name:'Power Clean',sets:5,reps:'2',weight:'200–210 lbs'},
+      {name:'Vertical Jump',sets:6,reps:'3',weight:'chase PR height'},
+      {name:'Depth Jump — Max Height',sets:5,reps:'4',weight:'maximum reactive height'},
+      {name:'Broad Jump',sets:5,reps:'3',weight:'max distance — log'},
+      {name:'Approach Vertical',sets:5,reps:'3',weight:'running jump — log best'}
+    ]},
+  { day:'SAT', type:'CONDITIONING', title:'Sport Conditioning — Phase 4', goal:'Football-specific. Short bursts, full recovery. Mimics game speed.',
+    exercises:[
+      {name:'10yd Burst Repeats',sets:15,reps:'10 yds all out',weight:'20 sec rest — game pace'},
+      {name:'Cone Drill Medley',sets:3,reps:'full sequence',weight:'5-10-5 + L + T back to back'},
+      {name:'Sled Push',sets:4,reps:'20 yds',weight:'heavy — simulates LOS work'}
+    ]},
+  { day:'SUN', type:'REST', title:'Recovery', goal:'Phase 4 peak. Every day matters. Recover like a professional.',
+    exercises:[
+      {name:'Ice Bath or Contrast',sets:1,reps:'10 min',weight:'recovery priority'},
+      {name:'Foam Roll + Stretch',sets:1,reps:'20 min',weight:'full body'}
+    ]}
+]},
+16: { phase:4, days:[
+  { day:'MON', type:'PEAK BENCH', title:'Bench — Week 16 (PR Attempt Zone)', goal:'This week you attempt a new training max. If Week 15 singles moved well, jump 5–10 lbs.',
+    exercises:[
+      {name:'Bench Press — Heavy Single/Double',sets:5,reps:'1',weight:'260–270 lbs — near-max territory'},
+      {name:'Speed Bench',sets:6,reps:'3',weight:'165 lbs — crisp'},
+      {name:'Close-Grip Bench',sets:4,reps:'6',weight:'200 lbs'},
+      {name:'Incline DB',sets:3,reps:'8',weight:'95–100 lbs'},
+      {name:'Overhead Press',sets:3,reps:'5',weight:'150 lbs'},
+      {name:'Tricep Work',sets:3,reps:'10',weight:'heavy'}
+    ]},
+  { day:'TUE', type:'PEAK SQUAT', title:'Squat — Week 16 (Above Previous Max)', goal:'You should be squatting above 315 in training sets now. The work has been done.',
+    exercises:[
+      {name:'Back Squat — Heavy Single',sets:5,reps:'1',weight:'320–330 lbs — new territory'},
+      {name:'Jump Squat',sets:5,reps:'5',weight:'95 lbs'},
+      {name:'Pause Squat',sets:3,reps:'3',weight:'245 lbs'},
+      {name:'Romanian Deadlift',sets:3,reps:'6',weight:'265 lbs'},
+      {name:'Leg Curl',sets:3,reps:'10',weight:'heavy'},
+      {name:'Calf Raise',sets:4,reps:'15',weight:'max'}
+    ]},
+  { day:'WED', type:'SPEED — PEAK', title:'Speed — Week 16', goal:'Your fastest week. Warm up perfectly. Run with intent. This is what all the strength was built for.',
+    exercises:[
+      {name:'Sprint Warm-Up',sets:1,reps:'15 min',weight:'full protocol — non-negotiable'},
+      {name:'40yd Dash',sets:5,reps:'timed',weight:'log — go for overall PR this week'},
+      {name:'10yd Acceleration',sets:8,reps:'max',weight:'full rest — drive phase perfection'},
+      {name:'Vertical Jump',sets:5,reps:'3',weight:'log — beat Week 15'},
+      {name:'Reactive Agility',sets:8,reps:'partner-driven',weight:'live reaction'}
+    ]},
+  { day:'THU', type:'PEAK PULL', title:'Heavy Pull — Week 16', goal:'Near-max deadlift this week. Walk up to something heavy and own it.',
+    exercises:[
+      {name:'Deadlift — Heavy',sets:3,reps:'1–2',weight:'405–425 lbs — if ready'},
+      {name:'Barbell Row',sets:4,reps:'5',weight:'275 lbs'},
+      {name:'Pull-Up',sets:4,reps:'max bodyweight',weight:'or +50 lbs for 5'},
+      {name:'Back Extension',sets:3,reps:'15',weight:'+45 lbs'}
+    ]},
+  { day:'FRI', type:'POWER', title:'Power Day — Week 16', goal:'Final heavy power session before taper begins. Chase every PR.',
+    exercises:[
+      {name:'Power Clean',sets:5,reps:'2',weight:'205–215 lbs'},
+      {name:'Vertical Jump',sets:6,reps:'3',weight:'log — should be 3-5" above baseline'},
+      {name:'Depth Jump',sets:5,reps:'4',weight:'max reactive output'},
+      {name:'Broad Jump',sets:5,reps:'3',weight:'log — should be 1–2 ft above baseline'}
+    ]},
+  { day:'SAT', type:'CONDITIONING', title:'Conditioning — Week 16', goal:'High-quality work. You\'re a different athlete than Week 1.',
+    exercises:[
+      {name:'40yd Sprint Repeats',sets:10,reps:'40 yds',weight:'rest 45 sec — quality reps only'},
+      {name:'Gasser',sets:3,reps:'110yd shuttle',weight:'rest 90 sec'},
+      {name:'Cone Drill Medley',sets:3,reps:'full sequence',weight:'all drills back to back'}
+    ]},
+  { day:'SUN', type:'REST', title:'Recovery', goal:'Four weeks to go. Everything you\'ve built is about to be used.',
+    exercises:[
+      {name:'Foam Roll + Stretch',sets:1,reps:'20 min',weight:'full body'}
+    ]}
+]},
+17: { phase:4, days:[
+  { day:'MON', type:'PEAK BENCH', title:'Bench — Week 17 (Taper Begins)', goal:'Reduce volume. Maintain intensity. Bench at or above 275 for singles. Prepare for PR attempt Week 19.',
+    exercises:[
+      {name:'Bench Press — Heavy Single',sets:4,reps:'1',weight:'270–280 lbs'},
+      {name:'Speed Bench',sets:5,reps:'3',weight:'165 lbs — fast'},
+      {name:'Incline Press',sets:3,reps:'6',weight:'185 lbs'},
+      {name:'Tricep Pushdown',sets:3,reps:'10',weight:'heavy'}
+    ]},
+  { day:'TUE', type:'PEAK SQUAT', title:'Squat — Week 17 (Taper)', goal:'Same deal. Heavy singles. Reduce volume by 30%. Keep the intensity.',
+    exercises:[
+      {name:'Back Squat — Heavy Single',sets:4,reps:'1',weight:'330–345 lbs — new PR zone'},
+      {name:'Jump Squat',sets:4,reps:'5',weight:'95 lbs'},
+      {name:'Romanian Deadlift',sets:3,reps:'5',weight:'255 lbs'},
+      {name:'Calf Raise',sets:3,reps:'15',weight:'loaded'}
+    ]},
+  { day:'WED', type:'SPEED — TAPER', title:'Speed Day — Week 17 (Taper Volume)', goal:'Cut sprint volume in half. Only quality reps. Your legs need to be fresh for Week 19 testing.',
+    exercises:[
+      {name:'Sprint Warm-Up',sets:1,reps:'12 min',weight:'full protocol'},
+      {name:'40yd Dash',sets:4,reps:'timed',weight:'quality over quantity — log best'},
+      {name:'10yd Acceleration',sets:6,reps:'max',weight:'full rest'},
+      {name:'Vertical Jump',sets:4,reps:'3',weight:'log — stay sharp'}
+    ]},
+  { day:'THU', type:'MODERATE PULL', title:'Pull — Week 17 (Reduced Volume)', goal:'Keep pulling. Keep the posterior chain engaged. Nothing crazy — just maintain.',
+    exercises:[
+      {name:'Deadlift',sets:3,reps:'2',weight:'385 lbs — feel heavy but controlled'},
+      {name:'Barbell Row',sets:3,reps:'6',weight:'265 lbs'},
+      {name:'Weighted Pull-Up',sets:3,reps:'5',weight:'+45 lbs'}
+    ]},
+  { day:'FRI', type:'POWER', title:'Power Day — Week 17', goal:'Keep the spring in your legs. Light-to-moderate. You\'re staying sharp, not building.',
+    exercises:[
+      {name:'Power Clean',sets:4,reps:'2',weight:'185 lbs — crisp and fast'},
+      {name:'Vertical Jump',sets:4,reps:'3',weight:'log'},
+      {name:'Box Jump',sets:4,reps:'3',weight:'24" — controlled landings'}
+    ]},
+  { day:'SAT', type:'CONDITIONING', title:'Conditioning — Moderate Week 17', goal:'Reduce volume. Keep quality. You\'re managing fatigue heading into peak weeks.',
+    exercises:[
+      {name:'40yd Sprint Repeats',sets:8,reps:'40 yds',weight:'quality reps — full rest'},
+      {name:'Cone Drill Medley',sets:3,reps:'full sequence',weight:'stay sharp'}
+    ]},
+  { day:'SUN', type:'REST', title:'Recovery', goal:'Three weeks out. You are as fit and strong as you have ever been.',
+    exercises:[
+      {name:'Contrast Bath',sets:1,reps:'10 min',weight:'if available'},
+      {name:'Stretch',sets:1,reps:'15 min',weight:'full body'}
+    ]}
+]},
+18: { phase:4, days:[
+  { day:'MON', type:'PEAK BENCH', title:'Bench — Week 18 (2 Weeks from PR Test)', goal:'Your last heavy bench training week before the final test. Move heavy weight. Feel powerful.',
+    exercises:[
+      {name:'Bench Press — Heavy Single',sets:3,reps:'1',weight:'275–285 lbs — match or beat old max'},
+      {name:'Speed Bench',sets:4,reps:'3',weight:'165 lbs'},
+      {name:'Incline DB',sets:3,reps:'8',weight:'90 lbs'},
+      {name:'Tricep Work',sets:3,reps:'10',weight:'moderate'}
+    ]},
+  { day:'TUE', type:'PEAK SQUAT', title:'Squat — Week 18 (2 Weeks from PR Test)', goal:'Squat your old max or above for a single. This is not a max attempt — it\'s a confidence builder.',
+    exercises:[
+      {name:'Back Squat — Heavy Single',sets:3,reps:'1',weight:'330–350 lbs — above old max'},
+      {name:'Jump Squat',sets:4,reps:'3',weight:'95 lbs'},
+      {name:'Romanian Deadlift',sets:3,reps:'5',weight:'245 lbs'},
+      {name:'Leg Press',sets:3,reps:'8',weight:'moderate'}
+    ]},
+  { day:'WED', type:'SPEED', title:'Speed — Week 18 (Sharpening)', goal:'Run fast. Stay sharp. Don\'t run too much. Quality over quantity all week.',
+    exercises:[
+      {name:'Sprint Warm-Up',sets:1,reps:'12 min',weight:'full'},
+      {name:'40yd Dash',sets:3,reps:'timed',weight:'quality reps only — log your best'},
+      {name:'10yd Acceleration',sets:5,reps:'max',weight:'full rest'},
+      {name:'Agility Drill of Choice',sets:4,reps:'timed',weight:'stay sharp'}
+    ]},
+  { day:'THU', type:'LIGHT PULL', title:'Pull — Week 18 (Light)', goal:'Moderate day. Nothing maximal. Arrive fresh to Week 19.',
+    exercises:[
+      {name:'Deadlift',sets:3,reps:'2',weight:'355 lbs — controlled'},
+      {name:'Row',sets:3,reps:'6',weight:'245 lbs'},
+      {name:'Pull-Up',sets:3,reps:'6',weight:'+40 lbs'}
+    ]},
+  { day:'FRI', type:'LIGHT POWER', title:'Power — Week 18 (Reduced)', goal:'Keep the explosive patterns. Low volume. High quality.',
+    exercises:[
+      {name:'Power Clean',sets:3,reps:'2',weight:'165 lbs — fast'},
+      {name:'Box Jump',sets:3,reps:'3',weight:'24" — feel the spring'},
+      {name:'Vertical Jump',sets:3,reps:'2',weight:'feel sharp'}
+    ]},
+  { day:'SAT', type:'LIGHT CONDITIONING', title:'Light Conditioning — Week 18', goal:'Keep the engine warm. Nothing brutal. The hard work is done.',
+    exercises:[
+      {name:'40yd Sprint',sets:5,reps:'moderate effort',weight:'80% — just move'},
+      {name:'Agility Ladder',sets:3,reps:'2 patterns',weight:'low intensity'}
+    ]},
+  { day:'SUN', type:'REST', title:'Rest — Prepare Mentally', goal:'Two weeks out. Review your goals. Visualize the PR bench, the PR squat, the faster 40.',
+    exercises:[
+      {name:'Stretch',sets:1,reps:'20 min',weight:'full body'},
+      {name:'Mental Preparation',sets:1,reps:'15 min',weight:'review your numbers and your goals'}
+    ]}
+]},
+19: { phase:4, days:[
+  { day:'MON', type:'BENCH — PR TEST', title:'BENCH PRESS MAX ATTEMPT — WEEK 19', goal:'This is it. Warm up exactly the same every time. Opener at 90% (248 lbs). Second at 100–102% (275–280). Go for 300+ on third. Be aggressive.',
+    exercises:[
+      {name:'Bench Press — Opener',sets:1,reps:'1',weight:'248 lbs (90% — should feel easy)'},
+      {name:'Bench Press — Second Attempt',sets:1,reps:'1',weight:'275–285 lbs (match or beat old max)'},
+      {name:'Bench Press — Third Attempt / PR',sets:1,reps:'1',weight:'295–310 lbs — new lifetime PR attempt'},
+      {name:'Log Your Result',sets:1,reps:'write it down',weight:'this is the number that counts'}
+    ]},
+  { day:'TUE', type:'REST', title:'Rest After Bench Test', goal:'Rest the chest and CNS after max attempt. Light movement only.',
+    exercises:[
+      {name:'Walk',sets:1,reps:'20 min',weight:'easy'},
+      {name:'Foam Roll — Upper Body',sets:1,reps:'10 min',weight:'chest, shoulders, lats'}
+    ]},
+  { day:'WED', type:'SQUAT — PR TEST', title:'SQUAT MAX ATTEMPT — WEEK 19', goal:'Same protocol. Opener at 90% (284). Second at 315–325. Third attempt goes for 340–365. You\'ve built the legs. Now use them.',
+    exercises:[
+      {name:'Squat — Opener',sets:1,reps:'1',weight:'284 lbs (90%)'},
+      {name:'Squat — Second Attempt',sets:1,reps:'1',weight:'315–325 lbs (match or beat old max)'},
+      {name:'Squat — Third Attempt / PR',sets:1,reps:'1',weight:'340–365 lbs — new lifetime PR attempt'},
+      {name:'Log Your Result',sets:1,reps:'write it down',weight:'this is the number'}
+    ]},
+  { day:'THU', type:'REST', title:'Rest After Squat Test', goal:'Rest the legs and CNS after max attempt.',
+    exercises:[
+      {name:'Walk or Light Bike',sets:1,reps:'20 min',weight:'easy'},
+      {name:'Foam Roll — Lower Body',sets:1,reps:'10 min',weight:'quads, hips, glutes, hamstrings'}
+    ]},
+  { day:'FRI', type:'SPEED & VERTICAL TEST', title:'SPEED & VERTICAL TESTING DAY — WEEK 19', goal:'This is your official athletic testing day. Warm up completely. Film everything. Run your absolute best.',
+    exercises:[
+      {name:'Sprint Warm-Up Protocol',sets:1,reps:'20 min',weight:'non-negotiable — full sequence'},
+      {name:'40yd Dash — OFFICIAL PR TEST',sets:5,reps:'full run',weight:'log EVERY time — take your best'},
+      {name:'Vertical Jump — OFFICIAL TEST',sets:5,reps:'max effort',weight:'log all — take your best — compare to Week 1'},
+      {name:'Broad Jump — OFFICIAL TEST',sets:4,reps:'max effort',weight:'log all'},
+      {name:'Pro Agility 5-10-5 — OFFICIAL',sets:4,reps:'both directions',weight:'log all times'},
+      {name:'L-Drill — OFFICIAL',sets:4,reps:'both directions',weight:'log all times'}
+    ]},
+  { day:'SAT', type:'RECOVERY', title:'Recovery Day', goal:'You just tested. Let it sink in. Look at your numbers versus Week 1. That\'s the work.',
+    exercises:[
+      {name:'Ice Bath or Contrast',sets:1,reps:'10 min',weight:'recovery'},
+      {name:'Light Walk',sets:1,reps:'20 min',weight:'easy'},
+      {name:'Foam Roll + Full Stretch',sets:1,reps:'20 min',weight:'full body'}
+    ]},
+  { day:'SUN', type:'REST', title:'Rest — One Week Remains', goal:'Review every number. One more week to continue the work or sharpen for the season.',
+    exercises:[
+      {name:'Log ALL Results',sets:1,reps:'document everything',weight:'bench PR / squat PR / 40 time / vertical / broad jump / bodyweight'}
+    ]}
+]},
+20: { phase:4, days:[
+  { day:'MON', type:'FINAL WEEK', title:'Final Week — Maintenance Upper', goal:'Light, crisp, sharp. Maintain what you\'ve built. Season prep begins.',
+    exercises:[
+      {name:'Bench Press',sets:3,reps:'5',weight:'225 lbs — fast and sharp'},
+      {name:'Row',sets:3,reps:'8',weight:'185 lbs'},
+      {name:'Overhead Press',sets:3,reps:'6',weight:'115 lbs'},
+      {name:'Face Pull',sets:3,reps:'15',weight:'light — shoulder health'}
+    ]},
+  { day:'TUE', type:'FINAL WEEK', title:'Final Week — Maintenance Lower', goal:'Keep the legs sharp. Nothing heavy. Transfer the gains to the field.',
+    exercises:[
+      {name:'Back Squat',sets:3,reps:'5',weight:'245 lbs — crisp'},
+      {name:'Romanian Deadlift',sets:2,reps:'8',weight:'195 lbs'},
+      {name:'Jump Squat',sets:4,reps:'5',weight:'95 lbs — explosive'},
+      {name:'Calf Raise',sets:3,reps:'15',weight:'moderate'}
+    ]},
+  { day:'WED', type:'FINAL SPEED', title:'Final Speed Day — Senior Season', goal:'Run like the athlete you became. Film your 40. Every mechanical cue from 20 weeks applied.',
+    exercises:[
+      {name:'Full Sprint Protocol',sets:1,reps:'15 min',weight:'complete warm-up'},
+      {name:'10yd Acceleration',sets:6,reps:'max',weight:'full rest — perfect drive phase'},
+      {name:'40yd Dash',sets:4,reps:'timed',weight:'log — compare to Week 19 best'},
+      {name:'Agility Drills',sets:4,reps:'timed',weight:'stay sharp'},
+      {name:'Vertical Jump',sets:4,reps:'3',weight:'log — final measurement'}
+    ]},
+  { day:'THU', type:'FINAL WEEK', title:'Final Pull Day', goal:'One last pull. Keep the posterior chain activated for the season.',
+    exercises:[
+      {name:'Deadlift',sets:3,reps:'3',weight:'335 lbs — controlled'},
+      {name:'Barbell Row',sets:3,reps:'6',weight:'225 lbs'},
+      {name:'Weighted Pull-Up',sets:3,reps:'6',weight:'+35 lbs'}
+    ]},
+  { day:'FRI', type:'FINAL POWER', title:'Final Power Day — Program Close', goal:'One last power session. End the program the same way you trained it — explosively.',
+    exercises:[
+      {name:'Power Clean',sets:4,reps:'3',weight:'165 lbs — fast and technical'},
+      {name:'Box Jump',sets:4,reps:'4',weight:'24" — land controlled'},
+      {name:'Vertical Jump',sets:4,reps:'3',weight:'log final number'},
+      {name:'Broad Jump',sets:4,reps:'3',weight:'log final distance'}
+    ]},
+  { day:'SAT', type:'FINAL CONDITIONING', title:'Final Conditioning Session', goal:'Your last S&C session. Go out like you earned it. You did.',
+    exercises:[
+      {name:'40yd Sprint Repeats',sets:10,reps:'40 yds',weight:'full effort — finish strong'},
+      {name:'Sled Push',sets:4,reps:'20 yds',weight:'moderate'},
+      {name:'Cone Drill Medley',sets:3,reps:'full sequence',weight:'L + 5-10-5 + T back to back'}
+    ]},
+  { day:'SUN', type:'PROGRAM COMPLETE', title:'PROGRAM COMPLETE — JOHN SMITH', goal:'20 weeks. Done. Log your final numbers. You are not the same athlete who started Week 1.',
+    exercises:[
+      {name:'Final Log — All Metrics',sets:1,reps:'document everything',weight:'bench PR / squat PR / 40 time / vertical / broad jump / final bodyweight'},
+      {name:'Send Final Check-In to Coach',sets:1,reps:'write the message',weight:'include how you feel, your biggest win, and what you want to work on in-season'}
+    ]}
+]}
+};
+
+// ─── STATE ───────────────────────────────────────────────────────────────────
+let currentWeek = 1;
+let selectedDay = null;
+let ratings = { effort:0, recovery:0, sleep:0, confidence:0 };
+
+function getLogs() { return JSON.parse(localStorage.getItem('js_football_logs') || '{}'); }
+function saveLogs(l) { localStorage.setItem('js_football_logs', JSON.stringify(l)); }
+function getCheckins() { return JSON.parse(localStorage.getItem('js_football_checkins') || '[]'); }
+function saveCheckins(c) { localStorage.setItem('js_football_checkins', JSON.stringify(c)); }
+function getKey(w, d) { return 'w' + w + '_d' + d; }
+function isLogged(w, d) { return !!getLogs()[getKey(w, d)]; }
+
+function clearCheckins() {
+  if (confirm('Clear all check-ins?')) { localStorage.removeItem('js_football_checkins'); renderCoach(); }
+}
+
+function showView(name) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('view-' + name).classList.add('active');
+  document.querySelectorAll('.nav-tab').forEach(b => { if (b.getAttribute('data-view') === name) b.classList.add('active'); });
+  if (name === 'dashboard') renderDashboard();
+  if (name === 'program') renderProgram();
+  if (name === 'coach') renderCoach();
+}
+
+function changeWeek(d) {
+  currentWeek = Math.max(1, Math.min(20, currentWeek + d));
+  renderProgram();
+}
+
+function renderProgram() {
+  const week = PROGRAM[currentWeek];
+  const phase = week ? week.phase : 1;
+  const pc = PHASE_COLORS[phase];
+
+  const banner = document.getElementById('phase-banner');
+  banner.style.background = 'linear-gradient(135deg,' + pc + '18,transparent 60%)';
+  banner.style.border = '1px solid ' + pc + '33';
+
+  const phaseNames = { 1:'PHASE 1 — FOUNDATION', 2:'PHASE 2 — STRENGTH', 3:'PHASE 3 — POWER & SPEED', 4:'PHASE 4 — PEAK & TRANSFER' };
+  const phaseInfo = { 1:'Hypertrophy base · GPP · Movement quality', 2:'Max strength · 5×5 progression · Bench & Squat climb', 3:'Explosive output · Vertical · 40yd · Agility peak', 4:'Peak strength · Sport transfer · Pre-season ready' };
+
+  document.getElementById('phase-name').textContent = phaseNames[phase];
+  document.getElementById('phase-name').style.color = pc;
+  document.getElementById('phase-info').textContent = phaseInfo[phase];
+  document.getElementById('week-display').textContent = 'WEEK ' + currentWeek;
+
+  document.getElementById('prev-btn').disabled = currentWeek === 1;
+  document.getElementById('next-btn').disabled = currentWeek === 20;
+
+  // Pills
+  const pills = document.getElementById('pills');
+  pills.innerHTML = '';
+  for (let w = 1; w <= 20; w++) {
+    const ph = PROGRAM[w] ? PROGRAM[w].phase : 1;
+    const c = PHASE_COLORS[ph];
+    const hasLog = PROGRAM[w] && PROGRAM[w].days.some((_, di) => isLogged(w, di));
+    const btn = document.createElement('button');
+    btn.className = 'pill' + (w === currentWeek ? ' active' : '');
+    btn.textContent = w;
+    btn.style.background = w === currentWeek ? c : 'var(--surface)';
+    btn.style.borderColor = w === currentWeek ? c : 'var(--border)';
+    btn.style.color = w === currentWeek ? '#fff' : 'var(--text-dim)';
+    if (hasLog) { const dot = document.createElement('div'); dot.className = 'pdot'; btn.appendChild(dot); }
+    btn.onclick = (wk => () => { currentWeek = wk; renderProgram(); })(w);
+    pills.appendChild(btn);
+  }
+
+  // Days
+  const TYPE_COLORS = {
+    'UPPER HYPERTROPHY':'#D42B2B','LOWER HYPERTROPHY':'#D42B2B','SPEED & AGILITY':'#2563eb','UPPER PULL':'#D42B2B',
+    'LOWER POWER INTRO':'#FF6B00','LOWER POWER':'#FF6B00','CONDITIONING':'#0891b2','REST':'#333','DELOAD UPPER':'#555',
+    'DELOAD LOWER':'#555','MOVEMENT':'#2563eb','LIGHT POWER':'#FF6B00','BENCH — STRENGTH':'#D42B2B',
+    'SQUAT — STRENGTH':'#D42B2B','DEADLIFT — STRENGTH':'#A01E1E','POWER':'#FF6B00','SPEED & AGILITY':'#2563eb',
+    'STRENGTH-SPEED':'#7c3aed','SPEED — PHASE 3':'#2563eb','PULL + POSTERIOR':'#A01E1E','POWER + PLYOS':'#FF6B00',
+    'SPEED':'#2563eb','MODERATE PULL':'#A01E1E','PEAK BENCH':'#D42B2B','PEAK SQUAT':'#D42B2B',
+    'PEAK DEADLIFT':'#A01E1E','PEAK PULL':'#A01E1E','SPEED — PEAK':'#2563eb','SPEED — TAPER':'#2563eb',
+    'LIGHT CONDITIONING':'#0891b2','BENCH — PR TEST':'#D42B2B','SQUAT — PR TEST':'#D42B2B',
+    'SPEED & VERTICAL TEST':'#2563eb','RECOVERY':'#333','FINAL WEEK':'#15803d','FINAL SPEED':'#2563eb',
+    'FINAL POWER':'#FF6B00','FINAL CONDITIONING':'#0891b2','PROGRAM COMPLETE':'#15803d',
+    'LIGHT PULL':'#A01E1E','DELOAD POWER':'#555'
+  };
+
+  const con = document.getElementById('days-container');
+  con.innerHTML = '';
+  if (!week) return;
+  week.days.forEach((day, di) => {
+    const logged = isLogged(currentWeek, di);
+    const tc = TYPE_COLORS[day.type] || '#D42B2B';
+    const card = document.createElement('div');
+    card.className = 'day-card' + (logged ? ' logged' : '');
+    card.innerHTML = `<div class="card-inner"><div class="card-stripe" style="background:${tc}"></div><div class="card-body"><div class="card-top"><div><div class="card-meta"><span class="day-name" style="color:${tc}">${day.day}</span><span class="type-tag">${day.type}</span>${logged ? '<span class="logged-tag">&#10003; LOGGED</span>' : ''}</div><div class="card-title">${day.title}</div><div class="card-goal">${day.goal}</div></div><div class="tap-hint">TAP TO LOG &#8594;</div></div><div class="ex-tags">${day.exercises.map(ex => `<div class="ex-tag"><b>${ex.name}</b> — ${ex.sets}×${ex.reps} @ ${ex.weight}</div>`).join('')}</div></div></div>`;
+    card.onclick = () => openLog(di);
+    con.appendChild(card);
+  });
+
+  buildRatings();
+}
+
+function buildRatings() {
+  [['effort',10],['recovery',10],['sleep',12],['confidence',10]].forEach(([id, max]) => {
+    const el = document.getElementById('rating-' + id);
+    if (!el) return;
+    el.innerHTML = '';
+    const vals = id === 'sleep' ? [5,6,7,8,9,10] : Array.from({length:max}, (_, i) => i + 1);
+    vals.forEach(v => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'r-btn' + (ratings[id] === v ? ' selected' : '');
+      b.textContent = v;
+      b.onclick = () => { ratings[id] = v; buildRatings(); };
+      el.appendChild(b);
+    });
+  });
+}
+
+function submitCheckin() {
+  const msg = document.getElementById('checkin-message').value;
+  const weight = document.getElementById('checkin-weight').value;
+  const msgEl = document.getElementById('checkin-msg');
+  const checkin = {
+    name: 'John Smith', week: currentWeek, date: new Date().toLocaleDateString(),
+    goal: 'Senior Football Season — 40yd / Vertical / Bench / Squat / +10 lbs',
+    effort: ratings.effort, recovery: ratings.recovery, sleep: ratings.sleep, confidence: ratings.confidence,
+    weight: weight || '—', message: msg, timestamp: Date.now()
+  };
+  const checkins = getCheckins();
+  checkins.unshift(checkin);
+  saveCheckins(checkins);
+  msgEl.textContent = '✓ CHECK-IN SAVED';
+  document.getElementById('checkin-message').value = '';
+  document.getElementById('checkin-weight').value = '';
+  ratings = { effort:0, recovery:0, sleep:0, confidence:0 };
+  buildRatings();
+  setTimeout(() => { msgEl.textContent = ''; }, 4000);
+}
+
+function openLog(dayIndex) {
+  selectedDay = dayIndex;
+  const day = PROGRAM[currentWeek].days[dayIndex];
+  const key = getKey(currentWeek, dayIndex);
+  const existing = getLogs()[key] || {};
+  document.getElementById('log-subtitle').textContent = 'Week ' + currentWeek + ' · ' + day.day + ' · ' + day.title;
+  document.getElementById('log-date').value = existing.date || new Date().toISOString().split('T')[0];
+  document.getElementById('log-time').value = existing.totalTime || '';
+  document.getElementById('log-sleep').value = existing.sleep || '';
+  document.getElementById('log-sleep-q').value = existing.sleepQuality || '';
+  document.getElementById('log-energy').value = existing.energy || '';
+  document.getElementById('log-mood').value = existing.mood || '';
+  document.getElementById('log-notes').value = existing.notes || '';
+  const ex = document.getElementById('exercise-inputs');
+  ex.innerHTML = '';
+  day.exercises.forEach((e, ei) => {
+    const row = document.createElement('div');
+    row.className = 'ex-block';
+    row.innerHTML = `<div class="ex-block-name">${e.name}</div><div class="ex-block-detail">Target: ${e.sets} sets × ${e.reps} @ ${e.weight}</div><div class="g3"><div class="field"><label>Actual Sets</label><input type="text" id="ex${ei}_s" placeholder="${e.sets}" value="${existing['ex'+ei+'_s'] || ''}"></div><div class="field"><label>Actual Reps / Dist</label><input type="text" id="ex${ei}_r" placeholder="${e.reps}" value="${existing['ex'+ei+'_r'] || ''}"></div><div class="field"><label>Actual Weight / Pace</label><input type="text" id="ex${ei}_w" placeholder="${e.weight}" value="${existing['ex'+ei+'_w'] || ''}"></div></div>`;
+    ex.appendChild(row);
+  });
+  showView('log');
+}
+
+function saveLog() {
+  const day = PROGRAM[currentWeek].days[selectedDay];
+  const key = getKey(currentWeek, selectedDay);
+  const entry = {
+    date: document.getElementById('log-date').value,
+    totalTime: document.getElementById('log-time').value,
+    sleep: document.getElementById('log-sleep').value,
+    sleepQuality: document.getElementById('log-sleep-q').value,
+    energy: document.getElementById('log-energy').value,
+    mood: document.getElementById('log-mood').value,
+    notes: document.getElementById('log-notes').value,
+    week: currentWeek, dayTitle: day.title, type: day.type
+  };
+  day.exercises.forEach((_, ei) => {
+    entry['ex'+ei+'_s'] = document.getElementById('ex'+ei+'_s').value;
+    entry['ex'+ei+'_r'] = document.getElementById('ex'+ei+'_r').value;
+    entry['ex'+ei+'_w'] = document.getElementById('ex'+ei+'_w').value;
+  });
+  const logs = getLogs(); logs[key] = entry; saveLogs(logs);
+  const m = document.getElementById('save-msg');
+  m.textContent = '✓ SESSION SAVED';
+  setTimeout(() => { m.textContent = ''; showView('program'); renderProgram(); }, 1200);
+}
+
+function renderDashboard() {
+  const logs = getLogs();
+  const checkins = getCheckins();
+  document.getElementById('s-logged').textContent = Object.keys(logs).length;
+  document.getElementById('s-checkins').textContent = checkins.length;
+  const weeksWithLogs = new Set(Object.keys(logs).map(k => k.split('_')[0])).size;
+  document.getElementById('s-weeks').textContent = weeksWithLogs;
+  const tl = document.getElementById('timeline');
+  tl.innerHTML = '';
+  for (let w = 1; w <= 20; w++) {
+    const ph = PROGRAM[w] ? PROGRAM[w].phase : 1;
+    const c = PHASE_COLORS[ph];
+    const hasLog = PROGRAM[w] && PROGRAM[w].days.some((_, di) => isLogged(w, di));
+    const box = document.createElement('div');
+    box.className = 'tbox' + (w === currentWeek ? ' cur' : '');
+    box.textContent = w;
+    box.style.background = hasLog ? c : 'var(--surface2)';
+    box.style.color = hasLog ? '#fff' : 'var(--text-dim)';
+    box.style.fontWeight = hasLog ? '700' : '400';
+    box.onclick = () => { currentWeek = w; showView('program'); };
+    tl.appendChild(box);
+  }
+  const rl = document.getElementById('recent-logs');
+  const entries = Object.entries(logs).slice(-5).reverse();
+  if (!entries.length) { rl.innerHTML = '<div class="empty">No sessions logged yet. Start with Week 1.</div>'; return; }
+  rl.innerHTML = entries.map(([k, l]) => `<div class="log-row"><div><div class="log-row-main">${l.date || k} — ${l.dayTitle || ''}</div><div class="log-row-sub">${(l.notes || 'No notes').slice(0,60)}</div></div><div class="log-row-stats">${l.energy ? '<span style="color:#FF6B00">⚡'+l.energy+'</span>' : ''}${l.mood ? '<span style="color:#2563eb">🧠'+l.mood+'</span>' : ''}${l.sleep ? '<span style="color:#15803d">💤'+l.sleep+'h</span>' : ''}</div></div>`).join('');
+}
+
+function renderCoach() {
+  const checkins = getCheckins();
+  const list = document.getElementById('checkin-list');
+  if (!checkins.length) {
+    list.innerHTML = '<div class="no-checkins">No check-ins yet.<br>John submits from the Program tab each week.</div>';
+    return;
+  }
+  list.innerHTML = checkins.map(c => `<div class="checkin-item"><div class="ci-top"><div class="ci-name">${c.name} — Week ${c.week}</div><div class="ci-date">${c.date}</div></div><div class="ci-metrics"><div class="ci-metric"><div class="ci-metric-l">Effort</div><div class="ci-metric-v" style="color:var(--red)">${c.effort || '—'}/10</div></div><div class="ci-metric"><div class="ci-metric-l">Recovery</div><div class="ci-metric-v" style="color:#2563eb">${c.recovery || '—'}/10</div></div><div class="ci-metric"><div class="ci-metric-l">Sleep</div><div class="ci-metric-v" style="color:#15803d">${c.sleep || '—'}h</div></div><div class="ci-metric"><div class="ci-metric-l">Feel</div><div class="ci-metric-v" style="color:#FF6B00">${c.confidence || '—'}/10</div></div><div class="ci-metric"><div class="ci-metric-l">Weight</div><div class="ci-metric-v" style="color:#e2b96e">${c.weight || '—'} lbs</div></div></div>${c.message ? `<div class="ci-note">"${c.message}"</div>` : ''}</div>`).join('');
+}
+
+window.addEventListener('load', () => { renderProgram(); buildRatings(); });
+</script>
+
+</body>
+</html>
