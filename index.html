@@ -194,6 +194,7 @@ select option { background:var(–surface2); }
   <input name="body_feel">
   <input name="weight">
   <textarea name="message"></textarea>
+  <input type="file" name="photo">
 </form>
 
 <nav>
@@ -286,6 +287,10 @@ select option { background:var(–surface2); }
     <div class="field" style="grid-column:1/-1">
       <label>Message to Coach</label>
       <textarea id="checkin-message" rows="3" placeholder="How was the week? Anything feel strong or off? Pain? PRs?"></textarea>
+    </div>
+    <div class="field" style="grid-column:1/-1">
+      <label>Progress Photo (optional)</label>
+      <input type="file" id="checkin-photo" accept="image/*" capture="user" style="background:var(--surface2);border:1px solid var(--border2);color:var(--text);border-radius:4px;padding:9px 13px;font-family:Barlow,sans-serif;font-size:13px;width:100%;">
     </div>
   </div>
   <button class="btn btn-red" style="width:100%;padding:12px;font-size:14px;letter-spacing:3px;" onclick="submitCheckin()">SUBMIT CHECK-IN</button>
@@ -1568,6 +1573,10 @@ async function submitCheckin() {
     formData.append('body_feel', ratings.confidence || '-');
     formData.append('weight', weight || '-');
     formData.append('message', msg || '(no message)');
+    const photoInput = document.getElementById('checkin-photo');
+    if (photoInput && photoInput.files[0]) {
+      formData.append('photo', photoInput.files[0]);
+    }
 
     const res = await fetch('/', {
       method: 'POST',
