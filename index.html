@@ -183,6 +183,19 @@ select option { background:var(–surface2); }
 </head>
 <body>
 
+<!-- Netlify Form Detection -->
+
+<form name="checkin" netlify netlify-honeypot="bot-field" hidden>
+  <input name="athlete">
+  <input name="week">
+  <input name="effort">
+  <input name="recovery">
+  <input name="sleep">
+  <input name="body_feel">
+  <input name="weight">
+  <textarea name="message"></textarea>
+</form>
+
 <nav>
   <div class="nav-inner">
     <div class="brand">
@@ -1527,11 +1540,12 @@ function buildRatings() {
   });
 }
 
-function submitCheckin() {
+async function submitCheckin() {
   const msg = document.getElementById('checkin-message').value;
   const weight = document.getElementById('checkin-weight').value;
   const msgEl = document.getElementById('checkin-msg');
 
+  // Save locally
   const checkin = {
     name: 'John Smith', week: currentWeek, date: new Date().toLocaleDateString(),
     effort: ratings.effort, recovery: ratings.recovery, sleep: ratings.sleep, confidence: ratings.confidence,
@@ -1541,52 +1555,41 @@ function submitCheckin() {
   checkins.unshift(checkin);
   saveCheckins(checkins);
 
-  const FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLSeW6HNjB0pzwDfGfpEbthQzdT__CVTxuYwaMvFP6k6p0cYc9Q/formResponse';
+  msgEl.textContent = 'SENDING...';
 
-  let iframe = document.getElementById('gf_iframe');
-  if (!iframe) {
-    iframe = document.createElement('iframe');
-    iframe.id = 'gf_iframe';
-    iframe.name = 'gf_iframe';
-    iframe.style.display = 'none';
-    document.body.appendChild(iframe);
+  try {
+    const formData = new FormData();
+    formData.append('form-name', 'checkin');
+    formData.append('athlete', 'John Smith');
+    formData.append('week', 'Week ' + currentWeek);
+    formData.append('effort', ratings.effort || '-');
+    formData.append('recovery', ratings.recovery || '-');
+    formData.append('sleep', ratings.sleep || '-');
+    formData.append('body_feel', ratings.confidence || '-');
+    formData.append('weight', weight || '-');
+    formData.append('message', msg || '(no message)');
+
+    const res = await fetch('/', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: formData
+    });
+
+    if (res.ok) {
+      msgEl.textContent = '✓ CHECK-IN SENT TO COACH';
+    } else {
+      throw new Error('Failed');
+    }
+  } catch(e) {
+    msgEl.textContent = '✓ SAVED — check your connection';
+    console.error('Netlify Forms error:', e);
   }
 
-  const gform = document.createElement('form');
-  gform.method = 'POST';
-  gform.action = FORM_ACTION;
-  gform.target = 'gf_iframe';
-  gform.style.display = 'none';
-
-  const fields = [
-    ['entry.791163475', 'Week ' + currentWeek],
-    ['entry.638343511', String(ratings.effort || '-')],
-    ['entry.1348667956', String(ratings.recovery || '-')],
-    ['entry.2073252431', String(ratings.sleep || '-')],
-    ['entry.1803814797', String(ratings.confidence || '-')],
-    ['entry.415991714', msg || '(no message)'],
-    ['entry.6608900', weight || '-'],
-    ['entry.410605023', 'John Smith']
-  ];
-
-  fields.forEach(function(pair) {
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = pair[0];
-    input.value = pair[1];
-    gform.appendChild(input);
-  });
-
-  document.body.appendChild(gform);
-  gform.submit();
-  document.body.removeChild(gform);
-
-  msgEl.textContent = 'CHECK-IN SENT TO COACH';
   document.getElementById('checkin-message').value = '';
   document.getElementById('checkin-weight').value = '';
   ratings = { effort:0, recovery:0, sleep:0, confidence:0 };
   buildRatings();
-  setTimeout(function() { msgEl.textContent = ''; }, 4000);
+  setTimeout(function() { msgEl.textContent = ''; }, 5000);
 }
 
 function openLog(dayIndex) {
