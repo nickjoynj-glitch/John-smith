@@ -207,8 +207,9 @@ select option { background:var(–surface2); }
     </div>
     <div class="nav-tabs">
       <button class="nav-tab active" data-view="program" onclick="showView('program')">Program</button>
+      <button class="nav-tab" data-view="nutrition" onclick="showView('nutrition')">Nutrition</button>
       <button class="nav-tab" data-view="dashboard" onclick="showView('dashboard')">Dashboard</button>
-      <button class="nav-tab" data-view="coach" onclick="showView('coach')">Coach</button>
+      <button class="nav-tab" data-view="coach" onclick="unlockCoach()">Coach</button>
     </div>
   </div>
 </nav>
@@ -333,6 +334,85 @@ select option { background:var(–surface2); }
     <div class="save-msg" id="save-msg"></div>
   </div>
 
+  <!-- NUTRITION VIEW -->
+
+  <div id="view-nutrition" class="view">
+
+```
+<div style="margin-bottom:24px">
+  <div class="dash-title">NUTRITION</div>
+  <div class="dash-sub">John Smith · Daily Macro Tracker</div>
+</div>
+
+<!-- Weekly Targets -->
+<div class="form-card" style="border-color:rgba(212,43,43,0.3);margin-bottom:20px;">
+  <div class="form-card-title">Weekly Targets — Set by Coach</div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;" id="nutr-targets-display">
+    <div class="stat" style="padding:14px 10px;">
+      <div class="stat-n" style="font-size:28px;" id="disp-calories">3500</div>
+      <div class="stat-l">Calories</div>
+    </div>
+    <div class="stat" style="padding:14px 10px;">
+      <div class="stat-n" style="font-size:28px;color:#FF6B00;" id="disp-protein">220g</div>
+      <div class="stat-l">Protein</div>
+    </div>
+    <div class="stat" style="padding:14px 10px;">
+      <div class="stat-n" style="font-size:28px;color:#2563eb;" id="disp-carbs">400g</div>
+      <div class="stat-l">Carbs</div>
+    </div>
+    <div class="stat" style="padding:14px 10px;">
+      <div class="stat-n" style="font-size:28px;color:#15803d;" id="disp-fat">100g</div>
+      <div class="stat-l">Fat</div>
+    </div>
+  </div>
+</div>
+
+<!-- Date selector -->
+<div class="form-card" style="margin-bottom:14px;">
+  <div class="form-card-title">Log Daily Macros</div>
+  <div class="g2" style="margin-bottom:16px;">
+    <div class="field">
+      <label>Date</label>
+      <input type="date" id="nutr-date">
+    </div>
+    <div class="field">
+      <label>Total Calories</label>
+      <input type="number" id="nutr-calories" placeholder="e.g. 3500" min="0" max="10000">
+    </div>
+    <div class="field">
+      <label>Protein (g)</label>
+      <input type="number" id="nutr-protein" placeholder="e.g. 220" min="0" max="1000">
+    </div>
+    <div class="field">
+      <label>Carbs (g)</label>
+      <input type="number" id="nutr-carbs" placeholder="e.g. 400" min="0" max="2000">
+    </div>
+    <div class="field">
+      <label>Fat (g)</label>
+      <input type="number" id="nutr-fat" placeholder="e.g. 100" min="0" max="500">
+    </div>
+    <div class="field">
+      <label>Water (oz)</label>
+      <input type="number" id="nutr-water" placeholder="e.g. 100" min="0" max="300">
+    </div>
+    <div class="field" style="grid-column:1/-1">
+      <label>Meal Notes</label>
+      <textarea id="nutr-notes" rows="2" placeholder="What did you eat? Any wins or struggles?"></textarea>
+    </div>
+  </div>
+  <button class="save-btn" onclick="saveNutrition()" style="font-size:16px;padding:14px;">SAVE DAY</button>
+  <div class="save-msg" id="nutr-msg"></div>
+</div>
+
+<!-- Weekly Summary -->
+<div class="form-card">
+  <div class="form-card-title">This Week — Macro Log</div>
+  <div id="nutr-log-list"><div class="empty">No nutrition logged yet. Start today.</div></div>
+</div>
+```
+
+  </div>
+
   <!-- DASHBOARD VIEW -->
 
   <div id="view-dashboard" class="view">
@@ -362,17 +442,65 @@ select option { background:var(–surface2); }
   <!-- COACH VIEW -->
 
   <div id="view-coach" class="view">
-    <div class="coach-banner">
-      <div>
-        <div class="coach-label">COACH DASHBOARD</div>
-        <div class="coach-sub">John Smith · Hustl Performance</div>
-      </div>
+
+```
+<!-- Password Gate -->
+<div id="coach-lock" style="text-align:center;padding:60px 20px;">
+  <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:4px;color:var(--red);margin-bottom:8px;">COACH ACCESS</div>
+  <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:2px;color:var(--text-muted);margin-bottom:24px;">ENTER YOUR COACH PASSWORD</div>
+  <input type="password" id="coach-password-input" placeholder="Password" style="background:var(--surface2);border:1px solid var(--border2);color:var(--text);border-radius:4px;padding:12px 16px;font-family:Barlow,sans-serif;font-size:14px;width:100%;max-width:300px;margin-bottom:12px;text-align:center;">
+  <br>
+  <button class="btn btn-red" style="margin-top:8px;padding:10px 32px;font-size:13px;" onclick="checkCoachPassword()">UNLOCK</button>
+  <div id="coach-lock-msg" style="color:var(--red);font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:2px;margin-top:10px;min-height:18px;"></div>
+</div>
+
+<!-- Coach Dashboard (hidden until unlocked) -->
+<div id="coach-content" style="display:none;">
+
+  <div class="coach-banner">
+    <div>
+      <div class="coach-label">COACH DASHBOARD</div>
+      <div class="coach-sub">John Smith · Hustl Performance</div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
       <button class="btn btn-ghost" onclick="clearCheckins()">Clear Check-ins</button>
+      <button class="btn btn-ghost" onclick="lockCoach()">Lock</button>
     </div>
-    <div class="form-card-title" style="margin-bottom:14px;font-family:'Barlow Condensed';font-size:11px;letter-spacing:3px;color:var(--red);">CLIENT CHECK-INS</div>
-    <div class="checkin-list" id="checkin-list">
-      <div class="no-checkins">No check-ins yet.<br>John submits from the Program tab each week.</div>
+  </div>
+
+  <!-- Macro Targets -->
+  <div class="form-card" style="border-color:rgba(212,43,43,0.3);margin-bottom:20px;">
+    <div class="form-card-title">Client Macro Targets</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:16px;">
+      <div class="field">
+        <label>Daily Calories</label>
+        <input type="number" id="target-calories" placeholder="3500" min="0" max="10000">
+      </div>
+      <div class="field">
+        <label>Protein (g)</label>
+        <input type="number" id="target-protein" placeholder="220" min="0" max="1000">
+      </div>
+      <div class="field">
+        <label>Carbs (g)</label>
+        <input type="number" id="target-carbs" placeholder="400" min="0" max="2000">
+      </div>
+      <div class="field">
+        <label>Fat (g)</label>
+        <input type="number" id="target-fat" placeholder="100" min="0" max="500">
+      </div>
     </div>
+    <button class="btn btn-red" style="width:100%;padding:12px;font-size:13px;letter-spacing:3px;" onclick="saveMacroTargets()">SAVE TARGETS</button>
+    <div id="macro-save-msg" style="text-align:center;font-size:11px;color:var(--red);margin-top:8px;min-height:18px;font-family:'Barlow Condensed',sans-serif;letter-spacing:2px;"></div>
+  </div>
+
+  <div class="form-card-title" style="margin-bottom:14px;font-family:'Barlow Condensed';font-size:11px;letter-spacing:3px;color:var(--red);">CLIENT CHECK-INS</div>
+  <div class="checkin-list" id="checkin-list">
+    <div class="no-checkins">No check-ins yet.<br>John submits from the Program tab each week.</div>
+  </div>
+
+</div>
+```
+
   </div>
 
 </main>
@@ -1453,6 +1581,7 @@ function showView(name) {
   if (name === 'dashboard') renderDashboard();
   if (name === 'program') renderProgram();
   if (name === 'coach') renderCoach();
+  if (name === 'nutrition') loadNutritionForm();
 }
 
 function changeWeek(d) {
@@ -1685,6 +1814,145 @@ function renderCoach() {
     return;
   }
   list.innerHTML = checkins.map(c => `<div class="checkin-item"><div class="ci-top"><div class="ci-name">${c.name} — Week ${c.week}</div><div class="ci-date">${c.date}</div></div><div class="ci-metrics"><div class="ci-metric"><div class="ci-metric-l">Effort</div><div class="ci-metric-v" style="color:var(--red)">${c.effort || '—'}/10</div></div><div class="ci-metric"><div class="ci-metric-l">Recovery</div><div class="ci-metric-v" style="color:#2563eb">${c.recovery || '—'}/10</div></div><div class="ci-metric"><div class="ci-metric-l">Sleep</div><div class="ci-metric-v" style="color:#15803d">${c.sleep || '—'}h</div></div><div class="ci-metric"><div class="ci-metric-l">Feel</div><div class="ci-metric-v" style="color:#FF6B00">${c.confidence || '—'}/10</div></div><div class="ci-metric"><div class="ci-metric-l">Weight</div><div class="ci-metric-v" style="color:#e2b96e">${c.weight || '—'} lbs</div></div></div>${c.message ? `<div class="ci-note">"${c.message}"</div>` : ''}</div>`).join('');
+}
+
+// ─── NUTRITION ───────────────────────────────────────────────────────────────
+function getNutrLogs() { return JSON.parse(localStorage.getItem('js_nutr_logs') || '{}'); }
+function saveNutrLogs(l) { localStorage.setItem('js_nutr_logs', JSON.stringify(l)); }
+
+function saveNutrition() {
+  const date = document.getElementById('nutr-date').value;
+  if (!date) { document.getElementById('nutr-msg').textContent = 'Pick a date first.'; return; }
+  const entry = {
+    date,
+    calories: document.getElementById('nutr-calories').value || '—',
+    protein: document.getElementById('nutr-protein').value || '—',
+    carbs: document.getElementById('nutr-carbs').value || '—',
+    fat: document.getElementById('nutr-fat').value || '—',
+    water: document.getElementById('nutr-water').value || '—',
+    notes: document.getElementById('nutr-notes').value || ''
+  };
+  const logs = getNutrLogs();
+  logs[date] = entry;
+  saveNutrLogs(logs);
+  const m = document.getElementById('nutr-msg');
+  m.textContent = '✓ DAY SAVED';
+  setTimeout(() => { m.textContent = ''; }, 2000);
+  renderNutritionLog();
+}
+
+function renderNutritionLog() {
+  const logs = getNutrLogs();
+  const list = document.getElementById('nutr-log-list');
+  if (!list) return;
+  const entries = Object.values(logs).sort((a,b) => b.date.localeCompare(a.date)).slice(0, 14);
+  if (!entries.length) { list.innerHTML = '<div class="empty">No nutrition logged yet. Start today.</div>'; return; }
+  list.innerHTML = entries.map(e => `
+    <div class="log-row">
+      <div>
+        <div class="log-row-main" style="font-family:Barlow Condensed,sans-serif;letter-spacing:1px;">${e.date}</div>
+        <div class="log-row-sub">${e.notes ? e.notes.slice(0,50) : 'No notes'}</div>
+      </div>
+      <div class="log-row-stats">
+        <span style="color:var(--red)">🔥${e.calories}</span>
+        <span style="color:#FF6B00">💪${e.protein}g</span>
+        <span style="color:#2563eb">🍚${e.carbs}g</span>
+        <span style="color:#15803d">🥑${e.fat}g</span>
+      </div>
+    </div>`).join('');
+}
+
+function loadNutritionForm() {
+  updateNutritionDisplay();
+  document.getElementById('nutr-date').value = new Date().toISOString().split('T')[0];
+  const logs = getNutrLogs();
+  const today = new Date().toISOString().split('T')[0];
+  if (logs[today]) {
+    const e = logs[today];
+    document.getElementById('nutr-calories').value = e.calories !== '—' ? e.calories : '';
+    document.getElementById('nutr-protein').value = e.protein !== '—' ? e.protein : '';
+    document.getElementById('nutr-carbs').value = e.carbs !== '—' ? e.carbs : '';
+    document.getElementById('nutr-fat').value = e.fat !== '—' ? e.fat : '';
+    document.getElementById('nutr-water').value = e.water !== '—' ? e.water : '';
+    document.getElementById('nutr-notes').value = e.notes || '';
+  }
+  renderNutritionLog();
+}
+
+// ─── COACH PASSWORD & MACRO TARGETS ─────────────────────────────────────────
+const COACH_PASSWORD = 'hustl2025';
+
+function unlockCoach() {
+  showView('coach');
+  const saved = sessionStorage.getItem('coach_unlocked');
+  if (saved === 'yes') {
+    document.getElementById('coach-lock').style.display = 'none';
+    document.getElementById('coach-content').style.display = 'block';
+    loadMacroTargets();
+    renderCoach();
+  }
+}
+
+function checkCoachPassword() {
+  const input = document.getElementById('coach-password-input').value;
+  const msg = document.getElementById('coach-lock-msg');
+  if (input === COACH_PASSWORD) {
+    sessionStorage.setItem('coach_unlocked', 'yes');
+    document.getElementById('coach-lock').style.display = 'none';
+    document.getElementById('coach-content').style.display = 'block';
+    loadMacroTargets();
+    renderCoach();
+  } else {
+    msg.textContent = 'INCORRECT PASSWORD';
+    setTimeout(() => { msg.textContent = ''; }, 2000);
+  }
+}
+
+function lockCoach() {
+  sessionStorage.removeItem('coach_unlocked');
+  document.getElementById('coach-lock').style.display = 'block';
+  document.getElementById('coach-content').style.display = 'none';
+  document.getElementById('coach-password-input').value = '';
+  showView('program');
+}
+
+function getMacroTargets() {
+  return JSON.parse(localStorage.getItem('hustl_macro_targets') || '{"calories":3500,"protein":220,"carbs":400,"fat":100}');
+}
+
+function loadMacroTargets() {
+  const t = getMacroTargets();
+  document.getElementById('target-calories').value = t.calories;
+  document.getElementById('target-protein').value = t.protein;
+  document.getElementById('target-carbs').value = t.carbs;
+  document.getElementById('target-fat').value = t.fat;
+  updateNutritionDisplay();
+}
+
+function saveMacroTargets() {
+  const targets = {
+    calories: document.getElementById('target-calories').value || 3500,
+    protein: document.getElementById('target-protein').value || 220,
+    carbs: document.getElementById('target-carbs').value || 400,
+    fat: document.getElementById('target-fat').value || 100
+  };
+  localStorage.setItem('hustl_macro_targets', JSON.stringify(targets));
+  updateNutritionDisplay();
+  const m = document.getElementById('macro-save-msg');
+  m.textContent = '✓ TARGETS UPDATED';
+  setTimeout(() => { m.textContent = ''; }, 2000);
+}
+
+function updateNutritionDisplay() {
+  const t = getMacroTargets();
+  const c = document.getElementById('disp-calories');
+  const p = document.getElementById('disp-protein');
+  const cb = document.getElementById('disp-carbs');
+  const f = document.getElementById('disp-fat');
+  if (c) c.textContent = t.calories;
+  if (p) p.textContent = t.protein + 'g';
+  if (cb) cb.textContent = t.carbs + 'g';
+  if (f) f.textContent = t.fat + 'g';
 }
 
 window.addEventListener('load', () => { renderProgram(); buildRatings(); });
